@@ -2,22 +2,29 @@
 <html>
     <head>
         <title>Ranking Global</title>
-
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
         <style type="text/css">
         body{
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
+            background-image:url('Tela login/estilos/imagens/tetris.png') ;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
         }
-
+        image{
+            width: 150%;
+        }
         table {
         border-collapse: collapse;
         }
 
         table, th, td {
-        border: 1px solid black;
+        border: 2px solid black;
         text-align: center;
         }
         tr:nth-child(even) {background-color: lightcoral;}
+        tr:nth-child(odd) {background-color: white;} 
 
         th{
             height: 50px;
@@ -25,11 +32,40 @@
         td{
            width: 250px;
         }
+
+        .rolling:hover{
+            transform: rotate(180deg);
+        }
+
         </style>
     </head>
     <body>
+        <nav class="barra-principal">
+            <ul class="menu alinhamento-horizontal">
+                <li class="item-menu"><a href="main.html"> Inicio</a></li>
+                <li class="item-menu">Ranking</li>
+            </ul>
+            <div class="dropdown">
+                <div class="dropbtn alinhamento-horizontal card-usuario">
+                    <div class="usuario">Nome</div>
+                    <img src="img/usuario.png" alt="foto-usuario" class="imagem-usario">
+                </div>
+                <div class="dropdown-content">
+                    <a href="#">
+                        <img src="img/edit-icon.png" alt="icone-edite" class="icone"> - Editar
+                    </a>
+                    <a href="Tela Login/login.html">
+                        <img src="img/logout-icon.png" alt="icone-edite" class="icone"> - Logout
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <header>
+            <img src="Tela login/estilos/imagens/logoR.png" width=20% height=30% alt="Rolling" class="rolling">
+            <img src="Tela login/estilos/imagens/logoT.png" width=20% height=30% alt="Tetris">
+            <h1>Ranking Global dos Jogadores</h1>
+        </header>
         <div class="content">
-        <h1>Ranking Global dos Jogadores</h1><br>
        <table border="1" align="center">
             <tr>
                 <th>Username</th>
@@ -87,7 +123,8 @@
             </tr>                
         </table>
         <br>
-        Posição atual do usuário (nome do usuário aqui): (posição atual). <br> <br>
+        <b>Posição atual do usuário (nome do usuário aqui): (posição atual). </b> <br> <br>
         </div>
+
     </body>
 </html>
