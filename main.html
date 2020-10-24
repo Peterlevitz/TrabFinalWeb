@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/geral.css" />
+    <link rel="stylesheet" type="text/css" href="css/ranking.css" />
     <title>Document</title>
 </head>
 <body>
     <nav class="barra-principal">
         <ul class="menu alinhamento-horizontal">
-            <li class="item-menu">Inicio</li>
-            <li class="item-menu">Ranking</li>
+            <li class="item-menu"><a href="main.html">Inicio</a></li>
+            <li class="item-menu"><a href="rankingGlobal.html">Ranking</a></li>
         </ul>
         <div class="dropdown">
             <div class="dropbtn alinhamento-horizontal card-usuario">
@@ -18,10 +20,10 @@
                 <img src="img/usuario.png" alt="foto-usuario" class="imagem-usario">
             </div>
             <div class="dropdown-content">
-                <a href="#">
+                <a href="cadastro.html">
                     <img src="img/edit-icon.png" alt="icone-edite" class="icone"> - Editar
                 </a>
-                <a href="#">
+                <a href="login.html">
                     <img src="img/logout-icon.png" alt="icone-edite" class="icone"> - Logout
                 </a>
             </div>
@@ -29,11 +31,13 @@
     </nav>
     <section class="conteudo">
         <div class="tela-principal">
-            <div id="jogo">
+            <div class="ext-jogo">
+                <div id="jogo">
+                </div>
             </div>
         </div>
         <div class="info">
-            <table>
+            <table class='item-info tabela-info'> 
                 <tr>
                     <td>Tempo partida</td>
                     <td>00:00</td>
@@ -47,11 +51,52 @@
                     <td>0</td>
                 </tr>
             <table>
-            <div class="item-info">Ranking</div>
+            <div class="item-info posicao">1</div>
+            <div class="item-info">
+
+                <table>
+                    <tr>
+                        <th><b>Nome</b></th>
+                        <th><b>Pontuação Obtida</b></th>
+                        <th><b>Nível Atingido</b></th>
+                        <th><b>Duração da Partida</b></th>
+                    </tr>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Pontuação Obtida</td>
+                        <td>Nível Atingido</td>
+                        <td>Duração da Partida</td>
+                    </tr>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Pontuação Obtida</td>
+                        <td>Nível Atingido</td>
+                        <td>Duração da Partida</td>
+                    </tr>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Pontuação Obtida</td>
+                        <td>Nível Atingido</td>
+                        <td>Duração da Partida</td>
+                    </tr>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Pontuação Obtida</td>
+                        <td>Nível Atingido</td>
+                        <td>Duração da Partida</td>
+                    </tr>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Pontuação Obtida</td>
+                        <td>Nível Atingido</td>
+                        <td>Duração da Partida</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </section>
     <footer>
-            rolling tetris - projeto prog web
+        © Equipe Rolling Tetris SI401A / FT UNICAMP
     </footer>
 </body>
 </html>

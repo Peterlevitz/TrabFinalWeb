@@ -1,0 +1,27 @@
+body{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+    text-align: center;
+}
+tr{
+    background-color: white;
+}
+
+tr:nth-child(even) {
+    background-color: lightcoral;
+}
+
+th{
+    height: 50px;
+}
+td{
+    width: 250px;
+}

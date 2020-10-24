@@ -2,13 +2,13 @@
     box-sizing: border-box
 }
 
-body{
+/* body{
     background-image: url('../img/tetris-back.png');
     width: 100%;
     font-family: Arial,sans-serif;
     background-size: cover;
     background-repeat: no-repeat;
-}
+} */
 
  /* Config de alinhamento do form */
 .form{
@@ -38,9 +38,8 @@ fieldset{
     margin: -220px 0 0 -210px; 
     padding:15px;
     position: absolute; 
-    top: 45%;
+    top: 60%;
     border-radius: 15px;
-    height: 750px; 
     width: 400px; 
     text-align: left;
 
@@ -69,5 +68,14 @@ fieldset{
 .cadname{
     text-align: center;
     color: #066a75;
+}
+
+.row{
+    display: flex;
+}
+
+.field{
+    width: 100%;
+    margin: 0 5px;
 }
 

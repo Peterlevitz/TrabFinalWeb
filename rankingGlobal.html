@@ -3,47 +3,14 @@
     <head>
         <title>Ranking Global</title>
         <link rel="stylesheet" type="text/css" href="css/main.css" />
-        <style type="text/css">
-        body{
-            text-align: center;
-            font-family: Arial, Helvetica, sans-serif;
-             background-image:url('img/tetris.png') ; 
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-        }
-        image{
-            width: 150%;
-        }
-        table {
-        border-collapse: collapse;
-        }
-
-        table, th, td {
-        border: 2px solid black;
-        text-align: center;
-        }
-        tr:nth-child(even) {background-color: lightcoral;}
-        tr:nth-child(odd) {background-color: white;} 
-
-        th{
-            height: 50px;
-        }
-        td{
-           width: 250px;
-        }
-
-        .rolling:hover{
-            transform: rotate(180deg);
-        }
-
-        </style>
+        <link rel="stylesheet" type="text/css" href="css/geral.css" />
+        <link rel="stylesheet" type="text/css" href="css/ranking.css" />
     </head>
     <body>
         <nav class="barra-principal">
             <ul class="menu alinhamento-horizontal">
-                <li class="item-menu"><a href="main.html"> Inicio</a></li>
-                <li class="item-menu">Ranking</li>
+                <li class="item-menu"><a href="main.html">Inicio</a></li>
+                <li class="item-menu"><a href="rankingGlobal.html">Ranking</a></li>
             </ul>
             <div class="dropdown">
                 <div class="dropbtn alinhamento-horizontal card-usuario">
@@ -51,7 +18,7 @@
                     <img src="img/usuario.png" alt="foto-usuario" class="imagem-usario">
                 </div>
                 <div class="dropdown-content">
-                    <a href="#">
+                    <a href="cadastro.html">
                         <img src="img/edit-icon.png" alt="icone-edite" class="icone"> - Editar
                     </a>
                     <a href="login.html">
@@ -60,71 +27,80 @@
                 </div>
             </div>
         </nav>
-        <header>
-            <img src="img/logoR.png" width=20% height=30% alt="Rolling" class="rolling">
-            <img src="img/logoT.png" width=20% height=30% alt="Tetris">
-            <h1>Ranking Global dos Jogadores</h1>
-        </header>
-        <div class="content">
-       <table border="1" align="center">
-            <tr>
-                <th>Username</th>
-                <th>Pontuação</th>
-                <th>Nível máximo</th>
-            </tr>
-            <tr>
-                <td>RobertinhoZika</td>
-                <td>550</td>
-                <td>6</td>
-            <tr>
-                <td>ElaSumiuDnv</td>
-                <td>500</td>
-                <td>6</td>
-            </tr>        
-            <tr>
-                <td>InsoniaMaster</td>
-                <td>450</td>
-                <td>6</td>
-            </tr>
-            <tr>
-                <td>MiadorDeRole</td>
-                <td>400</td>
-                <td>6</td>
-            </tr>        
-            <tr>
-                <td>MenosDe170cm</td>
-                <td>350</td>
-                <td>6</td>
-            </tr>        
-            <tr>
-                <td>CaraDeAmizadesDuvidosas</td>
-                <td>300</td>
-                <td>6</td>
-            </tr>        
-            <tr>
-                <td>OutroCaraComMenosDe170</td>
-                <td>250</td>
-                <td>6</td>
-            </tr>        
-            <tr>
-                <td>PedeLogoDemissao</td>
-                <td>200</td>
-                <td>6</td>
-            </tr>        
-            <tr>
-                <td>TravouDnv</td>
-                <td>150</td>
-                <td>6</td>
-            </tr>        
-            <tr>
-                <td>DaRisadaDaMinhaCara</td>
-                <td>100</td>
-                <td>6</td>
-            </tr>                
-        </table>
-        <br>
-        <b>Posição atual do usuário (nome do usuário aqui): (posição atual). </b> <br> <br>
+        <div >            
+            <header>
+                <img src="img/logoR.png" width=20% height=30% alt="Rolling" class="rolling">
+                <img src="img/logoT.png" width=20% height=30% alt="Tetris">
+                <h1>Ranking Global dos Jogadores</h1>
+            </header>
+            <div class="content">
+           <table border="1" align="center">
+                <tr>
+                    <th>Username</th>
+                    <th>Pontuação</th>
+                    <th>Nível máximo</th>
+                </tr>
+                <tr>
+                    <td>RobertinhoZika</td>
+                    <td>550</td>
+                    <td>6</td>
+                <tr>
+                    <td>ElaSumiuDnv</td>
+                    <td>500</td>
+                    <td>6</td>
+                </tr>        
+                <tr>
+                    <td>InsoniaMaster</td>
+                    <td>450</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>MiadorDeRole</td>
+                    <td>400</td>
+                    <td>6</td>
+                </tr>        
+                <tr>
+                    <td>MenosDe170cm</td>
+                    <td>350</td>
+                    <td>6</td>
+                </tr>        
+                <tr>
+                    <td>CaraDeAmizadesDuvidosas</td>
+                    <td>300</td>
+                    <td>6</td>
+                </tr>        
+                <tr>
+                    <td>OutroCaraComMenosDe170</td>
+                    <td>250</td>
+                    <td>6</td>
+                </tr>        
+                <tr>
+                    <td>PedeLogoDemissao</td>
+                    <td>200</td>
+                    <td>6</td>
+                </tr>        
+                <tr>
+                    <td>TravouDnv</td>
+                    <td>150</td>
+                    <td>6</td>
+                </tr>        
+                <tr>
+                    <td>DaRisadaDaMinhaCara</td>
+                    <td>100</td>
+                    <td>6</td>
+                </tr>                
+            </table>
+            <br>
+            <b>Posição atual do usuário (nome do usuário aqui): (posição atual). </b> <br> <br>
+            </div>
         </div>
 
     </body>
+
+    <footer>
+
+        © Equipe Rolling Tetris SI401A / FT UNICAMP
+
+    </footer>
+
 </html>

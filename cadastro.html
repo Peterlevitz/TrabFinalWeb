@@ -5,6 +5,7 @@
 <html lang=pt-br>
     <head>
         <link rel="stylesheet" href="css/estilocad.css">
+        <link rel="stylesheet" href="css/geral.css">
         <meta charset="utf-8">
         <title>Rolling Tetris</title>
     </head>
@@ -16,31 +17,54 @@
         </header>
         <form>
             <fieldset>
-            
                 <h1 class="cadname">Cadastro</h1>
-                <label id="config" for="name"><b>Nome completo </b></label><br>
-                <input class="form" type="text" placeholder="Insira seu nome" required><br>
+                <div class="row">
+                    <div class="field">
+                        <label id="config" for="name"><b>Nome completo </b></label><br>
+                        <input class="form" type="text" placeholder="Insira seu nome" required><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field">
+                        <label id="config" for="data"><b>Data de nascimento </b></label><br>
+                        <input class="form" type="date" placeholder="Insira sua data de nascimento" required><br>
+                    </div>
+                    <div class="field"
+                        <label id="config" for="cpf"><b>CPF </b></label><br>
+                        <input class="form" type="text" placeholder="Insira seu CPF" required><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field">
+                        <label id="config" for="tel"><b>Telefone</b></label><br>
+                        <input class="form" type="text" placeholder="Insira seu telefone" required><br>
+                    </div>
+                    <div class="field">
+                        <label id="config" for="user"><b>Username</b></label><br>
+                        <input class="form" type="text" placeholder="Insira seu username" required><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field">
+                        <label id="config" for="email"><b>Email</b></label><br>
+                        <input class="form" type="text" placeholder="Insira seu email" required><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field">
+                        <label id="config" for="senha"><b>Senha</b></label><br>
+                        <input class="form" type="password" placeholder="Insira a sua senha" required><br>
+                    </div>
+                    
+                    <div class="field"> 
+                        <label id="config" for="senha2"><b>Repita a sua senha</b></label><br>
+                        <input class="form" type="password" placeholder="Insira a sua senha novamente" required><br>
+                    </div>
+                </div>
+                        
 
-                <label id="config" for="data"><b>Data de nascimento </b></label><br>
-                <input class="form" type="date" placeholder="Insira sua data de nascimento" required><br>
-                
-                <label id="config" for="cpf"><b>CPF </b></label><br>
-                <input class="form" type="text" placeholder="Insira seu CPF" required><br>
-
-                <label id="config" for="tel"><b>Telefone</b></label><br>
-                <input class="form" type="text" placeholder="Insira seu telefone" required><br>
-            
-                <label id="config" for="user"><b>Username</b></label><br>
-                <input class="form" type="text" placeholder="Insira seu username" required><br>
                
-                <label id="config" for="email"><b>Email</b></label><br>
-                <input class="form" type="text" placeholder="Insira seu email" required><br>
                
-                <label id="config" for="senha"><b>Senha</b></label><br>
-                <input class="form" type="password" placeholder="Insira a sua senha" required><br>
-            
-                <label id="config" for="senha2"><b>Repita a sua senha</b></label><br>
-                <input class="form" type="password" placeholder="Insira a sua senha novamente" required><br>
             
                 <button type="submit" class="cadastrar">Cadastrar</button><br>
                     <p>Já possui uma conta?
@@ -49,6 +73,5 @@
             </fieldset>
         </form>
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </body>
 </html>
