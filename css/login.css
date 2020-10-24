@@ -2,26 +2,12 @@
 Estilo CSS tela de login
 */
 
-header {
-    /* text-align: center;
-     height: 50px; width:100%;
-    font-family: monospace ;
-    font-size: 40px;
-    color: #00b7e0;    
-    color: #d5e0ff; text-shadow: #000000 0.1em 0.1em 0.2em     */
-    
-     
+header {     
       text-align: center;
-     
- 
-
 }
 
-.rolling:hover{
-  
+.rolling:hover{  
   transform: rotate(180deg);
-
-
 }
 
 
@@ -35,19 +21,9 @@ footer {
 
 body{
 background-image:url('../img/tetris.png') ;width:100%;
-/* background-image: url('imagens/imagem.gif') ;  */ 
-
-
-  
- 
     background-size: cover;
-   /*  filter: brightness(50%); */
-    
-
+  
 }
-
-
-
 
 .enter
     {
@@ -59,11 +35,8 @@ background-image:url('../img/tetris.png') ;width:100%;
         font-size: 20px;  
         border: 1px solid #fff;   
         margin-bottom: 10px;  
-        text-shadow: 0 1px 1px #333;
-        
-       
-        border-radius: 5px;
-        
+        text-shadow: 0 1px 1px #333;    
+        border-radius: 5px;   
         transition: all 0.2s linear;
       }
 
@@ -74,18 +47,12 @@ label{
 
 
 .form {
-
 width: 95%;
   margin-top: 4px;
   padding: 10px;    
-  border: 1px solid #b2b2b2;
-  
-  
-  border-radius: 3px;
-  
-  
-  box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
-  
+  border: 1px solid #b2b2b2;  
+  border-radius: 3px;  
+  box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;  
   transition: all 0.2s linear;
 }
 
@@ -103,16 +70,7 @@ fieldset{
 
 }
 
-
-.login1{
-    font-size: 30px;
-    color: #066a75;  
-    font-family: Arial,sans-serif;    
-    text-align: center;    
-  }
-
   .login,.senha {
-
     text-align: left;
   }
 
