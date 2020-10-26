@@ -4,67 +4,63 @@
 <!DOCTYPE html>
 <html lang=pt-br>
     <head>
-        <link rel="stylesheet" href="css/estilocad.css">
-        <link rel="stylesheet" href="css/geral.css">
+        <link type="text/css" rel="stylesheet" href="css/estilocad.css">
+        <link type="text/css" rel="stylesheet" href="css/geral.css">
         <meta charset="utf-8">
         <title>Rolling Tetris</title>
     </head>
     
     <body>
         <header>
-            <img src="img/logoR.png" width=20% height=30% alt="Rolling" class="rolling">
-            <img src="img/logoT.png" width=20% height=30% alt="Tetris">
+            <img src="img/logoR.png" alt="Rolling" class="rolling imageRanking">
+            <img src="img/logoT.png" alt="Tetris" class="imageRanking">
         </header>
         <form>
             <fieldset>
                 <h1 class="cadname">Cadastro</h1>
                 <div class="row">
                     <div class="field">
-                        <label id="config" for="name"><b>Nome completo </b></label><br>
-                        <input class="form" type="text" placeholder="Insira seu nome" required><br>
+                        <label for="nome"><b>Nome completo </b></label><br>
+                        <input  id="nome" class="form" type="text" placeholder="Insira seu nome" required><br>
                     </div>
                 </div>
                 <div class="row">
                     <div class="field">
-                        <label id="config" for="data"><b>Data de nascimento </b></label><br>
-                        <input class="form" type="date" placeholder="Insira sua data de nascimento" required><br>
+                        <label for="data"><b>Data de nascimento </b></label><br>
+                        <input id="data" class="form" type="date" required>
                     </div>
-                    <div class="field"
-                        <label id="config" for="cpf"><b>CPF </b></label><br>
-                        <input class="form" type="text" placeholder="Insira seu CPF" required><br>
+                    <div class="field">
+                        <label for="cpf"><b>CPF </b></label><br>
+                        <input id="cpf" class="form" type="text" placeholder="Insira seu CPF" required><br>
                     </div>
                 </div>
                 <div class="row">
                     <div class="field">
-                        <label id="config" for="tel"><b>Telefone</b></label><br>
-                        <input class="form" type="text" placeholder="Insira seu telefone" required><br>
+                        <label for="tel"><b>Telefone</b></label><br>
+                        <input id="tel" class="form" type="text" placeholder="Insira seu telefone" required>
                     </div>
                     <div class="field">
-                        <label id="config" for="user"><b>Username</b></label><br>
-                        <input class="form" type="text" placeholder="Insira seu username" required><br>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="field">
-                        <label id="config" for="email"><b>Email</b></label><br>
-                        <input class="form" type="text" placeholder="Insira seu email" required><br>
+                        <label for="user"><b>Username</b></label><br>
+                        <input id="user" class="form" type="text" placeholder="Insira seu username" required><br>
                     </div>
                 </div>
                 <div class="row">
                     <div class="field">
-                        <label id="config" for="senha"><b>Senha</b></label><br>
-                        <input class="form" type="password" placeholder="Insira a sua senha" required><br>
+                        <label for="email"><b>Email</b></label><br>
+                        <input id="email" class="form" type="text" placeholder="Insira seu email" required><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field">
+                        <label for="senha"><b>Senha</b></label><br>
+                        <input id="senha" class="form" type="password" placeholder="Insira a sua senha" required>
                     </div>
                     
                     <div class="field"> 
-                        <label id="config" for="senha2"><b>Repita a sua senha</b></label><br>
-                        <input class="form" type="password" placeholder="Insira a sua senha novamente" required><br>
+                        <label for="senha2"><b>Repita a sua senha</b></label><br>
+                        <input id="senha2" class="form" type="password" placeholder="Insira a sua senha novamente" required><br>
                     </div>
                 </div>
-                        
-
-               
-               
             
                 <button type="submit" class="cadastrar">Cadastrar</button><br>
                     <p>Já possui uma conta?

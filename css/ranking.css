@@ -25,3 +25,12 @@ th{
 td{
     width: 250px;
 }
+table.tabelaGlobal{
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px;
+}
+img.imageRanking{
+    width: 20%;
+    height: 30%;
+}
