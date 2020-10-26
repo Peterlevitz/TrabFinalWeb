@@ -59,7 +59,7 @@ footer{
 
 .item-info{
     width: 100%;
-    margin:15px 0px;
+    margin: 5px 0px;
 }
 
   
@@ -106,7 +106,7 @@ footer{
 }
 
 .tabela-info{
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
 .posicao{
@@ -131,4 +131,8 @@ footer{
 .menu-botao{
     display: flex;
     justify-content: center;
+}
+
+h2{
+    font-size: 17px;
 }
