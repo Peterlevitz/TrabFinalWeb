@@ -40,7 +40,7 @@
     margin: auto;
     width: 200px;
     height: 400px;
-    background-image: url('../img/tetris-simulacao.png');
+    /* background-image: url('../img/tetris-simulacao.png'); */
     background-color: lightgray;
     border: solid 2px goldenrod;
     background-repeat: no-repeat;
@@ -90,6 +90,20 @@
     justify-content: center;
 }
 
+.quadrado {
+    height: 20px;
+    width: 20px;
+    background-color: red;
+}
+
+.quadrado-preenchido{
+    background-color: seagreen;
+}
+
 h2{
     font-size: 17px;
+}
+
+.escondido{
+    display: none;
 }
