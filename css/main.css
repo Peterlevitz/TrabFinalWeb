@@ -91,17 +91,33 @@
 }
 
 .quadrado {
-    height: 20px;
-    width: 20px;
+    height: 18px;
+    width: 18px;
     background-color: red;
+    border: solid 1px black
+}
+
+.quadrado-nao-preenchido{
+    background: none;
+    border: none;
+    margin: 1px;
 }
 
 .quadrado-preenchido{
     background-color: seagreen;
 }
 
+.quadrado-especial{
+    background-color: blue;
+}
+
 h2{
     font-size: 17px;
+}
+
+#elemento-atual{
+    z-index: 100;
+    position: relative;
 }
 
 .escondido{
