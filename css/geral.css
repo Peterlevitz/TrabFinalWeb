@@ -38,7 +38,12 @@ body{
 
 .alinhamento-horizontal {
     display: flex;
+    height: 18px;
+    width: 360px;
+        
 }
+
+
 
 .card-usuario{
     margin-right: 30px;
@@ -66,7 +71,7 @@ body{
 footer {
     background-color: dodgerblue;
     text-align: center;
-    position:absolute;
+    position:fixed;
     bottom:0;
     width:99.5%;
 }
