@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/geral.css" />
     <link rel="stylesheet" type="text/css" href="css/ranking.css" />
     <script src="js/jogo.js"></script>
+    <script src="js/tabuleiro.js"></script>
     <title>Rolling Tetris</title>
 </head>
 <body>
@@ -31,253 +32,24 @@
         </div>
     </nav>
     <section class="conteudo">
-        <div class="tela-principal">
+       
+         <div class="tela-principal">
+            Tamanho Tabuleiro: 
+            <p> <input type="button" name="exibir" value="10 x 20" onclick='show_tab1("e1")'  class="botao-tam"/> </p>
+            <p> <input type="button" name="exibir" value="22 x 44" onclick='show_tab2("e1")'  class="botao-tam"/> </p>
+
+            
+
+
             <div class="ext-jogo">
-                <div id="jogo">
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado quadrado-preenchido"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado quadrado-preenchido"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado quadrado-preenchido"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="alinhamento-horizontal">
-                        <div class="quadrado quadrado-preenchido"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado"></div>
-                        <div class="quadrado "></div>
-                    </div>
-                    
-                </div>
+                <p id="show"></p>
+                
+               
             </div>
+
+
         </div>
+        
         <div class="info">
             <h2>Detalhes da Partida</h2>
             <table class='item-info tabela-info'> 
