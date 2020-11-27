@@ -21,6 +21,7 @@
 
 .tela-principal{
     width: 70%;
+    height: 115%;
     margin-left: 10px;
     margin-right: 5px;
     justify-content: center;
@@ -42,9 +43,10 @@
     height: 400px;
     /* background-image: url('../img/tetris-simulacao.png'); */
     background-color: lightgray;
-    border: solid 2px goldenrod;
+    border: solid 2px rgb(4, 40, 241);
     background-repeat: no-repeat;
     background-size: cover;
+    
 }
 
 .item-info{
@@ -77,6 +79,13 @@
     margin: 0px 15px;
     color: white;
     height: 30px;
+}
+.botao-tam{
+    border-radius: 1rem;
+    margin: 0px 15px;
+    color: white;
+    height: 30px;
+    background-color: black;
 }
 
 .botao-pausar{
