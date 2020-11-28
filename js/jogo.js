@@ -5,6 +5,7 @@ var sentido = 'baixo'
 var linhas = 20;
 var colunas = 10;
 var tamanho_quadrado = 20;
+var tabuleiro_sentido = "transform: rotate(0deg);";
 
 function criaElemento(){//chamada para criar objetol-esquerda
     var componente = retornaComponente();
@@ -146,8 +147,12 @@ function elimina_linha(){
 function girar_tabuleiro(){
     if (sentido == 'cima') {
         sentido = 'baixo';
+        tabuleiro_sentido = "transform: rotate(0deg);";
+
+
     } else {
         sentido = 'cima';
+        tabuleiro_sentido =  "transform: rotate(180deg);";
     }
 
     
