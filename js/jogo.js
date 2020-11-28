@@ -9,15 +9,17 @@ var tabuleiro_sentido = "transform: rotate(0deg);";
 
 function criaElemento(){//chamada para criar objetol-esquerda
     var componente = retornaComponente();
+    var controlePosHorizontal = 0;
     elemento = new Object;
     elemento.tipo = componente;//barra,quadrado,etc
     elemento.top = retornTop(componente);//posiçao vertical do elemento
     elemento.colunas = retornaColunas(componente); // colunas q esse elemento esta ocupando
+    elemento.posHor = 0;
     elemento.html = criaComponente(componente);
     var jogo = document.getElementById("jogo");
     var elemento_atual = document.getElementById("elemento-atual");
     jogo.innerHTML = jogo.innerHTML + elemento.html;
-    posicionar();
+    posicionar(controlePosHorizontal);
 }
 
 function retornaComponente(){
@@ -107,7 +109,7 @@ function descida(valor){
 }
 
 function posicionar(){
-    var primeira_col = elemento["colunas"][0];
+    var primeira_col = elemento["colunas"][elemento.posHor];
     var left = primeira_col * tamanho_quadrado;
     var elemento_atual = document.getElementById("elemento-atual");
     elemento_atual.style.top = elemento["top"].toString() + 'px';
@@ -160,15 +162,40 @@ function girar_tabuleiro(){
 
 // criar eventos de chamada do teclado
 
+document.addEventListener("keydown", detectaTecla);
+function detectaTecla(e){
+    if (`${e.code}` == "ArrowRight") {
+        mover_direta();
+    }
+    if (`${e.code}` == "ArrowLeft") {
+        mover_esquerda();
+    }
+    if (`${e.code}` == "ArrowDown") {
+        mover_baixo();
+    }
+    if (`${e.code}` == "ArrowUp") {
+        gira();
+    }
+}
+
+var posHor = 0;
+
 function mover_direta(){
-    
+  elemento.posHor += 1;
+  posicionar();
 }
 
 function mover_esquerda(){
-
+    elemento.posHor -= 1;
+    posicionar();
 }
 
 function mover_baixo(){
+  elemento.top += tamanho_quadrado;
+  posicionar();
+}
+
+function gira(){
 
 }
 
