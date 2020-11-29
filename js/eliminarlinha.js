@@ -1,5 +1,5 @@
 function descidaDePixels(pix) {
-    document.getElementById(pix).style.top = parseInt(document.getElementById(pix).style.top) + 20;
+    document.getElementById(pix).innerHTML(pix) = document.getElementById(pix).innerHTML(pix+1);
 }
 
 function descerLinhas(position) {
@@ -30,7 +30,7 @@ function verifLinhas() {
             if (Py == 0) window.location.reload();
             if (Py == f) totalX++;
         }
-        if (overallX == 10) descerLinhas(f);
+        if (overallX == 10 | 22) descerLinhas(f);//caso uma linha esteja cheia, tanto no tabuleiro 10 x 20 quanto no 22 x 44, executa a descida
     }
 
 }
