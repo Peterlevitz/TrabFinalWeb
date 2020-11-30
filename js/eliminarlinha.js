@@ -1,7 +1,7 @@
 var linhas_el[i].innerHTML = document.getElementById('jogo').getElementsByClassName('alinhamento-horizontal');
 
 function descidaDePixels(pix) {
-    linhas_el[i].innerHTML(pix)=linhas_el[i].innerHTML(pix+1);
+    linhas_el[i].innerHTML(pix)=linhas_el[i].innerHTML(pix-1);
 }
 
 function descerLinhas(position) {
