@@ -6,7 +6,13 @@ var colunas = 0;
 var tamanho_quadrado = 0;
 var tabuleiro_sentido = "transform: rotate(0deg);";
 var matriz_jogo = [];
-
+var LINHAS_MARGEM_SUPERIOR = 4;
+var LINHAS_MARGEM_INFERIOR = 1;
+var COLUNAS_MARGEM_DIREITA = 3;
+var COLUNAS_MARGEM_ESQUERDA = 3;
+var VAZIO = 0;
+var OCUPADO = 1;
+var ESPECIAL = 2;
 
 function criaElemento(){//chamada para criar objetol-esquerda
     var componente = retornaComponente();
@@ -14,6 +20,9 @@ function criaElemento(){//chamada para criar objetol-esquerda
     elemento = new Object();
     elemento.tipo = componente;//barra,quadrado,etc
     elemento.top = retornaTop(componente);//posiçao vertical do elemento
+    elemento.primeira_linha = retornaPrimeiraLinha(componente);
+    elemento.primeira_coluna = retornaPrimeiraColuna(componente);
+    elemento.matriz = retornaMatrizElemento(componente);
     elemento.colunas = retornaColunas(componente); // colunas q esse elemento esta ocupando
     elemento.celulas = retornaCelulas();
     elemento.celulas_candidatas = retornaCelulasCandidatas();
@@ -23,6 +32,127 @@ function criaElemento(){//chamada para criar objetol-esquerda
     var elemento_atual = document.getElementById("elemento-atual");
     jogo.innerHTML = jogo.innerHTML + elemento.html;
     posicionar();
+}
+
+function retornaPrimeiraLinha(componente) {
+    if ('barra' == componente){
+        return 0;
+    }
+    else if ('quadrado' == componente){
+        return 2;
+    }
+    else if ('l-direita' == componente){
+        return 1;
+    }
+    else if ('l-esquerda' == componente){
+        return 1;
+    }
+    else if ('t-invertido' == componente){
+        return 2;
+    }
+    else if ('u' == componente){
+        return 2;
+    }
+    else if ('especial' == componente){
+        return 3;
+    }
+    return 0;
+}
+
+function validaMovimento_novo(){
+    var matriz = elemento["matriz"];
+    var lin_matriz = matriz.length;
+    for(i = 0; i < lin_matriz; i++){
+        var linha_matriz = matriz[i];
+        var col_matriz = linha_matriz.length
+        for (j =0; j < col_matriz; j++ ){
+            var linha_jogo = i + elemento["primeira_linha"];
+            var coluna_jogo = j + elemento["primeira_coluna"];
+            var item_matriz_elemento = matriz[i][j];
+            var item_matriz_jogo = matriz_jogo[linha_jogo][coluna_jogo];
+            if (item_matriz_jogo != VAZIO && item_matriz_elemento != VAZIO){
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+function retornaPrimeiraColuna(componente) {
+    var primeira_coluna = COLUNAS_MARGEM_ESQUERDA;
+    if ('barra' == componente){
+        primeira_coluna += Math.floor((colunas-5)/2)
+    }
+    else if ('quadrado' == componente){
+        primeira_coluna += Math.floor((colunas-2)/2)
+    }
+    else if ('l-direita' == componente){
+        primeira_coluna += Math.floor((colunas-3)/2)
+    }
+    else if ('l-esquerda' == componente){
+        primeira_coluna += Math.floor((colunas-3)/2)
+    }
+    else if ('t-invertido' == componente){
+        primeira_coluna += Math.floor((colunas-3)/2)
+    }
+    else if ('u' == componente){
+        primeira_coluna += Math.floor((colunas-3)/2)
+    }
+    else if ('especial' == componente){
+        primeira_coluna += Math.floor((colunas-1)/2)
+    }
+    return primeira_coluna;
+}
+
+function retornaMatrizElemento(componente) {
+    if ('barra' == componente){
+        return [
+            [VAZIO, VAZIO, OCUPADO, VAZIO],    
+            [VAZIO, VAZIO, OCUPADO, VAZIO],    
+            [VAZIO, VAZIO, OCUPADO, VAZIO],    
+            [VAZIO, VAZIO, OCUPADO, VAZIO],    
+        ];
+    }
+    else if ('quadrado' == componente){
+        return [
+            [OCUPADO, OCUPADO],
+            [OCUPADO, OCUPADO],
+        ];
+    }
+    else if ('l-direita' == componente){
+        return [
+            [VAZIO, OCUPADO, VAZIO],
+            [VAZIO, OCUPADO, VAZIO],
+            [VAZIO, OCUPADO, OCUPADO],
+        ]
+    }
+    else if ('l-esquerda' == componente){
+        return [
+            [VAZIO, OCUPADO, VAZIO],
+            [VAZIO, OCUPADO, VAZIO],
+            [OCUPADO, OCUPADO, VAZIO],
+        ]
+    }
+    else if ('t-invertido' == componente){
+        return [
+            [VAZIO, OCUPADO, VAZIO],
+            [OCUPADO, OCUPADO, OCUPADO],
+            [VAZIO, VAZIO, VAZIO],
+        ]
+    }
+    else if ('u' == componente){
+        return [
+            [OCUPADO, VAZIO, OCUPADO],
+            [OCUPADO, OCUPADO, OCUPADO],
+            [VAZIO, VAZIO, VAZIO],
+        ]
+        return 2;
+    }
+    else if ('especial' == componente){
+        return [[ESPECIAL]];
+    }
+    return 0;
 }
 
 function validaMovimento(){
@@ -102,8 +232,6 @@ function retornaCelulas(componente){
 }
 
 function retornaComponente(){
-    // 'barra', 'quadrado', 'l-direita', 'l-esquerda', 't-invertido', 'u', 'especial'
-    return 'u';
     var max = lista_elementos.length;
     var indice = Math.floor(Math.random() * (0 - max) + max);
     return lista_elementos[indice];
@@ -190,10 +318,10 @@ function mover_celulas_baixo(){
 }
 
 function posicionar(){
-    var primeira_col = elemento["colunas"][0];
-    var left = primeira_col * tamanho_quadrado;
+    var left = (elemento["primeira_coluna"] - COLUNAS_MARGEM_ESQUERDA) * tamanho_quadrado;
+    var top = - ( (linhas)  * tamanho_quadrado) + ((elemento.primeira_linha - LINHAS_MARGEM_SUPERIOR) * tamanho_quadrado) ;
     var elemento_atual = document.getElementById("elemento-atual");
-    elemento_atual.style.top = elemento["top"].toString() + 'px';
+    elemento_atual.style.top = top.toString() + 'px';
     elemento_atual.style.left = left.toString() + 'px';
 }
 
@@ -205,7 +333,7 @@ function interromper(){
     // verificar o sentido antes de interromper
 
     verifica_eliminar_linha();
-    fixarPosicão();
+    fixarPosicao();
     removeElemento();
     criaElemento();
 }
@@ -267,6 +395,10 @@ var posHor = 0;
 
 function mover_direta(){
     var tamanho_col = elemento.colunas.length;
+    elemento.primeira_coluna +=1;
+    if (!validaMovimento_novo()){
+        elemento.primeira_coluna -=1;
+    }
     for (i=0; i < tamanho_col - 1; i++){
         elemento.colunas[i] +=1;
     }
@@ -276,6 +408,10 @@ function mover_direta(){
 
 function mover_esquerda(){
     var tamanho_col = elemento.colunas.length;
+    elemento.primeira_coluna -=1;
+    if (!validaMovimento_novo()){
+        elemento.primeira_coluna +=1;
+    }
     for (i=0; i < tamanho_col - 1; i++){
         elemento.colunas[i] -= 1;
     }
@@ -285,7 +421,9 @@ function mover_esquerda(){
 
 function mover_baixo(){
     mover_celulas_baixo();
-    if (!validaMovimento){
+    elemento.primeira_linha += 1;
+    if (!validaMovimento_novo()){
+        elemento.primeira_linha -= 1;
         interromper();
         return;
     }
@@ -296,8 +434,10 @@ function mover_baixo(){
 }
 
 function mover_cima(){
-    elemento.top -= tamanho_quadrado;
-    posicionar();
+    if (sentido == 'cima') {
+        mover_baixo();
+    }
+    
 }
 
 function gira(){
@@ -341,19 +481,19 @@ function show_tab(tipo) {
         linhas = 20;
         colunas = 10;
         tamanho_quadrado = 18;
-        html = document.getElementById("matriz_1").innerHTML;
+        // html = document.getElementById("matriz_1").innerHTML;
         pixels = '16';
     } else if (tipo == '2') {
         linhas = 44;
         colunas = 22;
         tamanho_quadrado = 10;
-        html = document.getElementById("matriz_2").innerHTML;
+        // html = document.getElementById("matriz_2").innerHTML;
         pixels = '8';
     }
-    popula_matriz_jogo(linhas,colunas);
     document.getElementById("show").innerHTML = "<div id='jogo'> </div>";
     jogo = document.getElementById("jogo");
-    jogo.innerHTML = html;
+    popula_matriz_jogo(linhas,colunas);
+    // jogo.innerHTML = html;
     var cols = document.getElementsByClassName('quadrado');
     for(i = 0; i < cols.length; i++) {
         cols[i].style.height = pixels + 'px';
@@ -364,11 +504,34 @@ function show_tab(tipo) {
 }
 
 function popula_matriz_jogo(linhas,colunas){
-    for (i=0; i<linhas+5;i++){
+    var linhas_matriz = linhas + LINHAS_MARGEM_SUPERIOR + LINHAS_MARGEM_INFERIOR;
+    var colunas_matriz = colunas + COLUNAS_MARGEM_DIREITA + COLUNAS_MARGEM_ESQUERDA;
+    var html = "";
+    matriz_jogo=[]
+    for (i=0; i < linhas_matriz;i++){
         var linha_matriz = [];
-        for (j=0; j<colunas+4; j++){
-            linha_matriz.push(false);
+        html += '<div class="alinhamento-horizontal">'
+        for (j=0; j < colunas_matriz; j++){
+            if (i < LINHAS_MARGEM_SUPERIOR || i >= (linhas_matriz - LINHAS_MARGEM_INFERIOR) ) {
+                html += '<div class="quadrado escondido"></div>'
+                if ( i >= (linhas_matriz - LINHAS_MARGEM_INFERIOR)){
+                    linha_matriz.push(OCUPADO);
+                } else {
+                    linha_matriz.push(VAZIO);
+                }
+            }
+            else if (j < COLUNAS_MARGEM_ESQUERDA || j >= (colunas_matriz - COLUNAS_MARGEM_DIREITA)){
+                html += '<div class="quadrado escondido"></div>'
+                linha_matriz.push(OCUPADO);
+            } else {
+                html += '<div class="quadrado"></div>'
+                linha_matriz.push(VAZIO);
+            }
         }
+        html += '</div>';
         matriz_jogo.push(linha_matriz);
     }
+
+    jogo = document.getElementById("jogo");
+    jogo.innerHTML = html;
 }
