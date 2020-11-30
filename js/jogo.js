@@ -6,6 +6,10 @@ var colunas = 0;
 var tamanho_quadrado = 0;
 var tabuleiro_sentido = "transform: rotate(0deg);";
 var matriz_jogo = [];
+var tempo_inicio = Date.now();
+var speed = 1000;
+var score = 0;
+var tabuleiro = '1';
 var LINHAS_MARGEM_SUPERIOR = 4;
 var LINHAS_MARGEM_INFERIOR = 1;
 var COLUNAS_MARGEM_DIREITA = 3;
@@ -13,6 +17,7 @@ var COLUNAS_MARGEM_ESQUERDA = 3;
 var VAZIO = 0;
 var OCUPADO = 1;
 var ESPECIAL = 2;
+var status = 'rodando';
 
 function criaElemento(){//chamada para criar objetol-esquerda
     var componente = retornaComponente();
@@ -32,6 +37,14 @@ function criaElemento(){//chamada para criar objetol-esquerda
     var elemento_atual = document.getElementById("elemento-atual");
     jogo.innerHTML = jogo.innerHTML + elemento.html;
     posicionar();
+    autodrop();
+}
+
+function iniciar(){
+    status = 'rodando';
+    if (document.getElementById)
+    removeElemento();
+    criaTabuleiro();
 }
 
 function retornaPrimeiraLinha(componente) {
@@ -108,10 +121,10 @@ function retornaPrimeiraColuna(componente) {
 function retornaMatrizElemento(componente) {
     if ('barra' == componente){
         return [
-            [VAZIO, VAZIO, OCUPADO, VAZIO],    
-            [VAZIO, VAZIO, OCUPADO, VAZIO],    
-            [VAZIO, VAZIO, OCUPADO, VAZIO],    
-            [VAZIO, VAZIO, OCUPADO, VAZIO],    
+            [VAZIO, VAZIO, OCUPADO, VAZIO],
+            [VAZIO, VAZIO, OCUPADO, VAZIO],
+            [VAZIO, VAZIO, OCUPADO, VAZIO],
+            [VAZIO, VAZIO, OCUPADO, VAZIO],
         ];
     }
     else if ('quadrado' == componente){
@@ -308,6 +321,17 @@ function retornaColunas(componente) {
     return [0];
 }
 
+function autodrop(){
+  const tempo_atual = Date.now();
+  const dif = tempo_atual - tempo_inicio;
+
+  if(dif > speed) {
+    mover_baixo();
+    tempo_inicio = Date.now();
+  }
+   requestAnimationFrame(autodrop);
+}
+
 function mover_celulas_baixo(){
     //reduzir todas as linhas das celulas candidadas
     elemento.celulas_candidatas = elemento.celulas;
@@ -355,13 +379,17 @@ function fixarPosicao() {
                 quadrados[coluna_jogo].classList.add('quadrado-preenchido');
                 matriz_jogo[linha_jogo][coluna_jogo] = OCUPADO
             }
+            if (item_matriz_jogo == ESPECIAL || item_matriz_elemento == ESPECIAL){
+              quadrados[coluna_jogo].classList.add('quadrado-especial');
+              matriz_jogo[linha_jogo][coluna_jogo] = ESPECIAL
+          }
         }
     }
 
 }
 
 function verifica_eliminar_linha(){
-    
+    //percorrer as linha
     elimina_linha();
 
 }
@@ -455,12 +483,12 @@ function mover_cima(){
     if (sentido == 'cima') {
         mover_baixo();
     }
-    
+
 }
 
 function gira(){
-    var elemento_html = document.getElementById('elemento-atual');
-    var linhas = elemento_html.getElementsByClassName('alinhamento-horizontal');
+    var elemento = document.getElementById('elemento-atual');
+    var linhas = elemento.getElementsByClassName('alinhamento-horizontal');
     var matriz_componente = [];
     for (i=0; i < linhas.length; i++){
         quadradosLinha = linhas[i].getElementsByClassName('quadrado');
@@ -475,6 +503,7 @@ function gira(){
         item = [];
         item_elemento = [];
         for(j=0; j < linhas_matriz; j++){
+            if (item_elemento.hasOwnProperty(j))
             item_elemento.push(elemento.matriz[j][i]);
             item.push(matriz_componente[j][i].outerHTML);
         }
@@ -491,11 +520,11 @@ function gira(){
     var colunas_matriz = matriz_nova[0].length;
 
     for (i=0; i < linhas_matriz; i++){
-        html += "<div class=\"alinhamento-horizontal \">"; 
+        html += "<div class=\"alinhamento-horizontal \">";
         for(j=0; j < colunas_matriz; j++){
-            html += matriz_nova[i][j]; 
+            html += matriz_nova[i][j];
         }
-        html += "</div>"; 
+        html += "</div>";
     }
 
     elemento.innerHTML = html;
@@ -503,13 +532,18 @@ function gira(){
 }
 
 function show_tab(tipo) {
-    if (tipo == '1') {
+    tabuleiro = tipo;
+    criaTabuleiro();
+    }
+
+function criaTabuleiro() {
+  if (tabuleiro == '1') {
         linhas = 20;
         colunas = 10;
         tamanho_quadrado = 18;
         // html = document.getElementById("matriz_1").innerHTML;
         pixels = '16';
-    } else if (tipo == '2') {
+    } else if (tabuleiro == '2') {
         linhas = 44;
         colunas = 22;
         tamanho_quadrado = 10;
@@ -561,3 +595,38 @@ function popula_matriz_jogo(linhas,colunas){
     jogo = document.getElementById("jogo");
     jogo.innerHTML = html;
 }
+
+
+
+var intervalo;
+
+function tempo(op) {
+	if (op == 1) {
+		document.getElementById('parar').style.display = "block";
+		document.getElementById('comeca').style.display = "none";
+	}
+	var s = 1;
+	var m = 0;
+	var h = 0;
+	intervalo = window.setInterval(function() {
+		if (s == 60) { m++; s = 0; }
+		if (m == 60) { h++; s = 0; m = 0; }
+		if (h < 10) document.getElementById("hora").innerHTML = "0" + h + "h "; else document.getElementById("hora").innerHTML = h + "h ";
+		if (s < 10) document.getElementById("segundo").innerHTML = "0" + s + "s "; else document.getElementById("segundo").innerHTML = s + "s ";
+		if (m < 10) document.getElementById("minuto").innerHTML = "0" + m + "m "; else document.getElementById("minuto").innerHTML = m + "m ";
+		s++;
+	},1000);
+}
+
+function parar() {
+	window.clearInterval(intervalo);
+	document.getElementById('parar').style.display = "none";
+	document.getElementById('comeca').style.display = "block";
+}
+
+
+
+function limpa() {
+	document.getElementById('voltas').innerHTML = "";
+}
+window.onload=tempo;
