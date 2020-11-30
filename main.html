@@ -60,11 +60,11 @@
         </div>
 
         <div class="info">
-            <h2>Detalhes da Partida</h2>
+          <h2>Detalhes da Partida</h2>
             <table class='item-info tabela-info'>
                 <tr>
                     <td>Tempo partida</td>
-                    <td>00:00</td>
+                    <td><span id="hora">00 h</span><span id="minuto">00 m</span><span id="segundo">00 s</span><br></td>
                 </tr>
                 <tr>
                     <td>Pontuação</td>
@@ -76,10 +76,11 @@
                 </tr>
             </table>
             <div class="item-info menu-botao">
-                <button class="botao botao-pausar">Pausar</button>
-                <button onclick="iniciar()" class="botao botao-iniciar">Iniciar</button>
-            </div>
-            <div class="item-info posicao">1</div>
+                <div id="parar"><input type="button" class="botao botao-pausar" value="Parar" onclick="parar();"></div>
+                <div id="comeca" style="display:none;"><input type="button" class="botao botao-iniciar" value="Comeca" onclick="tempo(1);"  onclick="iniciar()"><br></div>
+            
+                
+                <div class="item-info posicao">1</div>
             <div class="item-info">
 
                 <table>
