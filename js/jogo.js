@@ -6,7 +6,6 @@ var colunas = 0;
 var tamanho_quadrado = 0;
 var tabuleiro_sentido = "transform: rotate(0deg);";
 var matriz_jogo = [];
-var tabuleiro = '1';
 var LINHAS_MARGEM_SUPERIOR = 4;
 var LINHAS_MARGEM_INFERIOR = 1;
 var COLUNAS_MARGEM_DIREITA = 3;
@@ -14,7 +13,6 @@ var COLUNAS_MARGEM_ESQUERDA = 3;
 var VAZIO = 0;
 var OCUPADO = 1;
 var ESPECIAL = 2;
-var status = 'rodando';
 
 function criaElemento(){//chamada para criar objetol-esquerda
     var componente = retornaComponente();
@@ -34,13 +32,6 @@ function criaElemento(){//chamada para criar objetol-esquerda
     var elemento_atual = document.getElementById("elemento-atual");
     jogo.innerHTML = jogo.innerHTML + elemento.html;
     posicionar();
-}
-
-function iniciar(){
-    status = 'rodando';
-    if (document.getElementById)
-    removeElemento();
-    criaTabuleiro();
 }
 
 function retornaPrimeiraLinha(componente) {
@@ -364,27 +355,65 @@ function fixarPosicao() {
                 quadrados[coluna_jogo].classList.add('quadrado-preenchido');
                 matriz_jogo[linha_jogo][coluna_jogo] = OCUPADO
             }
-            if (item_matriz_jogo == ESPECIAL || item_matriz_elemento == ESPECIAL){
-                quadrados[coluna_jogo].classList.add('quadrado-especial');
-                matriz_jogo[linha_jogo][coluna_jogo] = ESPECIAL
-            }
         }
     }
 
 }
 
-function verifica_eliminar_linha(){
-    //percorrer as linha
-    elimina_linha();
+function elimina_linha(){
+    var linhas_el[i].innerHTML = document.getElementById('jogo').getElementsByClassName('alinhamento-horizontal');
 
+    function descidaDePixels(pix) {
+        linhas_el[i].innerHTML(pix)=linhas_el[i].innerHTML(pix-1);
+    }
+    var Px = 0;
+    var Py = 0;
+    //Adciona 100 pontos a pontuação toda vez que uma linha for completada
+    document.getElementById("score").innerHTML = parseInt(document.getElementById("score").innerHTML) + 100;
+    
+    for (c = 1; c < linhas_el[i].innerHTML; c++) {//enquanto C for menor q a quantidade de pixeis - 3,
+        Px = parseInt(document.getElementById("p" + c).style.left);//o for continua sendo executado
+        Py = parseInt(document.getElementById("p" + c).style.top);
+    
+        if(linhas_el[i].innerHTML==10){
+            if (Py == position) {
+                document.getElementById("p" + c).style.top = "180px";
+                document.getElementById("p" + c).style.display = "none";
+            }                if (Py < position) descidaDePixels("p" + c);//enquanto y for menor q position, executa a descida
+        }else{
+            if (Py == position) {
+                document.getElementById("p" + c).style.top = "396px";
+                document.getElementById("p" + c).style.display = "none";
+            }
+            if (Py < position) descidaDePixels("p" + c);//enquanto y for menor q position, executa a descida
+        }
+    }
 }
 
-function elimina_linha(){
-    // if ( tem especial){
-
-    // }
-
-
+function verifica_eliminar_linha(){
+    var overallX = 0;
+    if(linhas_el[i].innerHTML==10){
+        for (f = 162; f > 0; f -= 18) {
+            overallX = 0;
+            for (c = 1; c < (quantPixel - 3); c++) {
+                Py = parseInt(document.getElementById("p" + c).style.top);
+                if (Py == 0) window.location.reload();
+                if (Py == f) overallX++;
+            }
+        }
+        if (overallX == 10 | 22) descerLinhas(f);//caso uma linha esteja cheia, tanto no tabuleiro 10 x 20 quanto no 22 x 44, executa a descida
+    }else{     
+        for (f = 378; f > 0; f -= 18) {
+            overallX = 0;
+            for (c = 1; c < (quantPixel - 3); c++) {
+                Py = parseInt(document.getElementById("p" + c).style.top);
+                if (Py == 0) window.location.reload();
+                if (Py == f) overallX++;
+            }
+        if (overallX == 10 | 22) elimina_linha(f);//caso uma linha esteja cheia, tanto no tabuleiro 10 x 20 quanto no 22 x 44, executa a descida
+        }
+    }        
+    elimina_linha();
 }
 
 function girar_tabuleiro(){
@@ -515,19 +544,14 @@ function gira(){
 
 }
 
-function show_tab(tipo){
-    tabuleiro = tipo;
-    criaTabuleiro();
-}
-
-function criaTabuleiro() {
-    if (tabuleiro == '1') {
+function show_tab(tipo) {
+    if (tipo == '1') {
         linhas = 20;
         colunas = 10;
         tamanho_quadrado = 18;
         // html = document.getElementById("matriz_1").innerHTML;
         pixels = '16';
-    } else if (tabuleiro == '2') {
+    } else if (tipo == '2') {
         linhas = 44;
         colunas = 22;
         tamanho_quadrado = 10;
