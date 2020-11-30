@@ -16,7 +16,8 @@ function criaElemento(){//chamada para criar objetol-esquerda
     elemento.top = retornaTop(componente);//posiçao vertical do elemento
     elemento.colunas = retornaColunas(componente); // colunas q esse elemento esta ocupando
     elemento.celulas = retornaCelulas();
-    elemento.celulas_candidatas = elemento.celulas;
+    elemento.celulas_candidatas = retornaCelulasCandidatas();
+
     elemento.html = criaComponente(componente);
     var jogo = document.getElementById("jogo");
     var elemento_atual = document.getElementById("elemento-atual");
@@ -38,26 +39,46 @@ function validaMovimento(){
     return true;
 }
 
+function retornaCelulasCandidatas(componente){
+
+    cel1 = new Object();
+    cel1.linha = elemento.celulas[0].linha+1;
+    cel1.coluna = elemento.celulas[0].coluna+1;
+
+    cel2 = new Object();
+    cel2.linha = elemento.celulas[1].linha+1;
+    cel2.coluna =  elemento.celulas[1].coluna+1;
+
+    cel3 = new Object();
+    cel3.linha = elemento.celulas[2].linha+1;
+    cel3.coluna =  elemento.celulas[2].coluna+1;
+
+    cel4 = new Object();
+    cel4.linha = elemento.celulas[3].linha+1;
+    cel4.coluna =  elemento.celulas[3].coluna+1;
+    return [cel1,cel2,cel3,cel4];
+}
+
 
 function retornaCelulas(componente){
-    celula1 = new Object(); 
+    celula1 = new Object();
     celula1.linha = -4
-    celula1.coluna = 5;  
-    
-    celula2 = new Object(); 
+    celula1.coluna = 5;
+
+    celula2 = new Object();
     celula2.linha = -3
-    celula2.coluna = 5;  
-    
-    celula3 = new Object(); 
+    celula2.coluna = 5;
+
+    celula3 = new Object();
     celula3.linha = -2
-    celula3.coluna = 5;  
-    
-    celula4 = new Object(); 
+    celula3.coluna = 5;
+
+    celula4 = new Object();
     celula4.linha = -1
-    celula4.coluna = 5;  
+    celula4.coluna = 5;
     return [celula1,celula2,celula3,celula4];
     if ('barra' == componente){
-        
+
     }
     else if ('quadrado' == componente){
         return 2*tamanho_quadrado;
@@ -90,7 +111,7 @@ function retornaComponente(){
 
 function criaComponente(componente){
     obj = document.getElementById(componente).innerHTML;
-    var html = 
+    var html =
     "<div id='elemento-atual'>" + obj + "</div>"
     return html;
 }
@@ -164,7 +185,7 @@ function mover_celulas_baixo(){
     elemento.celulas_candidatas = elemento.celulas;
     var tam_cel = elemento.celulas_candidatas.length;
     for(i =0; i < tam_cel; i++){
-        elemento.celulas_candidatas[i].linha +=1;
+        elemento.celulas_candidatas[i].linha += 1;
     }
 }
 
@@ -190,7 +211,7 @@ function interromper(){
 }
 
 function fixarPosicao() {
-    
+
 }
 
 function verifica_eliminar_linha(){
@@ -204,7 +225,7 @@ function elimina_linha(){
 
     // }
 
-    
+
 }
 
 function girar_tabuleiro(){
@@ -218,7 +239,7 @@ function girar_tabuleiro(){
         tabuleiro_sentido =  "transform: rotate(180deg);";
     }
 
-    
+
 }
 
 // criar eventos de chamada do teclado
@@ -271,6 +292,7 @@ function mover_baixo(){
     elemento.celulas = elemento.celulas_candidatas;
     elemento.top += tamanho_quadrado;
     posicionar();
+    elemento.celulas_candidatas = retornaCelulasCandidatas();
 }
 
 function mover_cima(){
