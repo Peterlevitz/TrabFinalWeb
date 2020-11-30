@@ -37,10 +37,7 @@ body{
 }
 
 .alinhamento-horizontal {
-    display: flex;
-    height: 18px;
-    width: 360px;
-        
+    display: flex;        
 }
 
 

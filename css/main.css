@@ -39,15 +39,17 @@
 }
 
 #jogo{
-    margin: auto;
+    /* margin: auto;
     width: 200px;
     height: 400px;
-    /* background-image: url('../img/tetris-simulacao.png'); */
+    background-image: url('../img/tetris-simulacao.png');
     background-color: lightgray;
     border: solid 2px rgb(4, 40, 241);
     background-repeat: no-repeat;
-    background-size: cover;
-    
+    background-size: cover; */
+    z-index: 0;
+    border: solid 1px black;
+    margin: auto;
 }
 
 .item-info{
@@ -102,10 +104,12 @@
 }
 
 .quadrado {
-    height: 18px;
-    width: 18px;
+    height: 16px;
+    width: 16px;
     background-color: red;
-    border: solid 1px black
+    border: solid 1px black;
+    /* margin-left: -1px;
+    margin-top: -1px; */
 }
 
 .quadrado-nao-preenchido{
@@ -133,4 +137,19 @@ h2{
 
 .escondido{
     display: none;
+}
+
+.config{
+    z-index: 200;
+    background-color: lightgray;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+p{
+    margin: 5px;
+}
+
+.show{
+    margin: auto;
 }
