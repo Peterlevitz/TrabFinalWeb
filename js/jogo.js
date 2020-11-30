@@ -339,6 +339,24 @@ function interromper(){
 }
 
 function fixarPosicao() {
+    var linhasHTML = document.getElementById("jogo").getElementsByClassName("alinhamento-horizontal");
+    var matriz = elemento["matriz"];
+    var lin_matriz = matriz.length;
+    for(i = 0; i < lin_matriz; i++){
+        var linha_matriz = matriz[i];
+        var col_matriz = linha_matriz.length
+        for (j =0; j < col_matriz; j++ ){
+            var linha_jogo = i + elemento["primeira_linha"];
+            var coluna_jogo = j + elemento["primeira_coluna"];
+            var item_matriz_elemento = matriz[i][j];
+            var item_matriz_jogo = matriz_jogo[linha_jogo][coluna_jogo];
+            var quadrados = linhasHTML[linha_jogo].getElementsByClassName('quadrado');
+            if (item_matriz_jogo == OCUPADO || item_matriz_elemento == OCUPADO){
+                quadrados[coluna_jogo].classList.add('quadrado-preenchido');
+                matriz_jogo[linha_jogo][coluna_jogo] = OCUPADO
+            }
+        }
+    }
 
 }
 
@@ -441,8 +459,8 @@ function mover_cima(){
 }
 
 function gira(){
-    var elemento = document.getElementById('elemento-atual');
-    var linhas = elemento.getElementsByClassName('alinhamento-horizontal');
+    var elemento_html = document.getElementById('elemento-atual');
+    var linhas = elemento_html.getElementsByClassName('alinhamento-horizontal');
     var matriz_componente = [];
     for (i=0; i < linhas.length; i++){
         quadradosLinha = linhas[i].getElementsByClassName('quadrado');
@@ -452,12 +470,20 @@ function gira(){
     var colunas_matriz = matriz_componente[0].length;
 
     var matriz_nova = [];
+    var matriz_elemento_nova = [];
     for (i=colunas_matriz - 1; i >= 0 ; i--){
         item = [];
+        item_elemento = [];
         for(j=0; j < linhas_matriz; j++){
+            item_elemento.push(elemento.matriz[j][i]);
             item.push(matriz_componente[j][i].outerHTML);
         }
         matriz_nova.push(item);
+        matriz_elemento_nova.push(item_elemento)
+    }
+    elemento.matriz = matriz_elemento_nova
+    if(!validaMovimento_novo()){
+        return;
     }
     var html = ""
 
