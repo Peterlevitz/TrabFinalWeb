@@ -153,3 +153,7 @@ p{
 .show{
     margin: auto;
 }
+
+.invisivel{
+    visibility: hidden;
+}

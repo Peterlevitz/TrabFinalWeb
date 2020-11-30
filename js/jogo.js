@@ -81,6 +81,8 @@ function retornaCelulas(componente){
 }
 
 function retornaComponente(){
+    // 'barra', 'quadrado', 'l-direita', 'l-esquerda', 't-invertido', 'u', 'especial'
+    return 'u';
     var max = lista_elementos.length;
     var indice = Math.floor(Math.random() * (0 - max) + max);
     return lista_elementos[indice];
@@ -288,25 +290,38 @@ function gira(){
     var colunas_matriz = matriz_componente[0].length;
 
     var matriz_nova = [];
-    for (i=0; i < colunas_matriz; i++){
+    for (i=colunas_matriz - 1; i >= 0 ; i--){
+        item = [];
         for(j=0; j < linhas_matriz; j++){
-
+            item.push(matriz_componente[j][i].outerHTML);
         }
+        matriz_nova.push(item);
+    }
+    var html = ""
+
+    var linhas_matriz = matriz_nova.length;
+    var colunas_matriz = matriz_nova[0].length;
+
+    for (i=0; i < linhas_matriz; i++){
+        html += "<div class=\"alinhamento-horizontal \">"; 
+        for(j=0; j < colunas_matriz; j++){
+            html += matriz_nova[i][j]; 
+        }
+        html += "</div>"; 
     }
 
+    elemento.innerHTML = html;
 
-    return matriz_componente;
 }
 
-/*  TABULEIRO 10 x 20 */
-function show_tab(id) {
-    if (id == '1') {
+function show_tab(tipo) {
+    if (tipo == '1') {
         linhas = 20;
         colunas = 10;
         tamanho_quadrado = 18;
         html = document.getElementById("matriz_1").innerHTML;
         pixels = '16';
-    } else if (id == '2') {
+    } else if (tipo == '2') {
         linhas = 44;
         colunas = 22;
         tamanho_quadrado = 10;
@@ -327,9 +342,9 @@ function show_tab(id) {
 }
 
 function popula_matriz_jogo(linhas,colunas){
-    for (i=0; i<linhas;i++){
+    for (i=0; i<linhas+5;i++){
         var linha_matriz = [];
-        for (j=0; j<colunas; j++){
+        for (j=0; j<colunas+4; j++){
             linha_matriz.push(false);
         }
         matriz_jogo.push(linha_matriz);
