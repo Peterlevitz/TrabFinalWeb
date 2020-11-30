@@ -360,60 +360,18 @@ function fixarPosicao() {
 
 }
 
-function elimina_linha(){
-    var linhas_el[i].innerHTML = document.getElementById('jogo').getElementsByClassName('alinhamento-horizontal');
+function verifica_eliminar_linha(){
+    
+    elimina_linha();
 
-    function descidaDePixels(pix) {
-        linhas_el[i].innerHTML(pix)=linhas_el[i].innerHTML(pix-1);
-    }
-    var Px = 0;
-    var Py = 0;
-    //Adciona 100 pontos a pontuação toda vez que uma linha for completada
-    document.getElementById("score").innerHTML = parseInt(document.getElementById("score").innerHTML) + 100;
-    
-    for (c = 1; c < linhas_el[i].innerHTML; c++) {//enquanto C for menor q a quantidade de pixeis - 3,
-        Px = parseInt(document.getElementById("p" + c).style.left);//o for continua sendo executado
-        Py = parseInt(document.getElementById("p" + c).style.top);
-    
-        if(linhas_el[i].innerHTML==10){
-            if (Py == position) {
-                document.getElementById("p" + c).style.top = "180px";
-                document.getElementById("p" + c).style.display = "none";
-            }                if (Py < position) descidaDePixels("p" + c);//enquanto y for menor q position, executa a descida
-        }else{
-            if (Py == position) {
-                document.getElementById("p" + c).style.top = "396px";
-                document.getElementById("p" + c).style.display = "none";
-            }
-            if (Py < position) descidaDePixels("p" + c);//enquanto y for menor q position, executa a descida
-        }
-    }
 }
 
-function verifica_eliminar_linha(){
-    var overallX = 0;
-    if(linhas_el[i].innerHTML==10){
-        for (f = 162; f > 0; f -= 18) {
-            overallX = 0;
-            for (c = 1; c < (quantPixel - 3); c++) {
-                Py = parseInt(document.getElementById("p" + c).style.top);
-                if (Py == 0) window.location.reload();
-                if (Py == f) overallX++;
-            }
-        }
-        if (overallX == 10 | 22) descerLinhas(f);//caso uma linha esteja cheia, tanto no tabuleiro 10 x 20 quanto no 22 x 44, executa a descida
-    }else{     
-        for (f = 378; f > 0; f -= 18) {
-            overallX = 0;
-            for (c = 1; c < (quantPixel - 3); c++) {
-                Py = parseInt(document.getElementById("p" + c).style.top);
-                if (Py == 0) window.location.reload();
-                if (Py == f) overallX++;
-            }
-        if (overallX == 10 | 22) elimina_linha(f);//caso uma linha esteja cheia, tanto no tabuleiro 10 x 20 quanto no 22 x 44, executa a descida
-        }
-    }        
-    elimina_linha();
+function elimina_linha(){
+    // if ( tem especial){
+
+    // }
+
+
 }
 
 function girar_tabuleiro(){
@@ -603,37 +561,3 @@ function popula_matriz_jogo(linhas,colunas){
     jogo = document.getElementById("jogo");
     jogo.innerHTML = html;
 }
-
-
-var intervalo;
-
-function tempo(op) {
-	if (op == 1) {
-		document.getElementById('parar').style.display = "block";
-		document.getElementById('comeca').style.display = "none";
-	}
-	var s = 1;
-	var m = 0;
-	var h = 0;
-	intervalo = window.setInterval(function() {
-		if (s == 60) { m++; s = 0; }
-		if (m == 60) { h++; s = 0; m = 0; }
-		if (h < 10) document.getElementById("hora").innerHTML = "0" + h + "h "; else document.getElementById("hora").innerHTML = h + "h ";
-		if (s < 10) document.getElementById("segundo").innerHTML = "0" + s + "s "; else document.getElementById("segundo").innerHTML = s + "s ";
-		if (m < 10) document.getElementById("minuto").innerHTML = "0" + m + "m "; else document.getElementById("minuto").innerHTML = m + "m ";		
-		s++;
-	},1000);
-}
-
-function parar() {
-	window.clearInterval(intervalo);
-	document.getElementById('parar').style.display = "none";
-	document.getElementById('comeca').style.display = "block";
-}
-
-
-
-function limpa() {
-	document.getElementById('voltas').innerHTML = "";
-}
-window.onload=tempo;
