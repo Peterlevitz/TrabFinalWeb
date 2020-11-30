@@ -626,7 +626,4 @@ function parar() {
 
 
 
-function limpa() {
-	document.getElementById('voltas').innerHTML = "";
-}
 window.onload=tempo;
