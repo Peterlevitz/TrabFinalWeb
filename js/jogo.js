@@ -10,6 +10,7 @@ var tempo_inicio = Date.now();
 var speed = 1000;
 var score = 0;
 var tabuleiro = '1';
+var op = 0;
 var LINHAS_MARGEM_SUPERIOR = 4;
 var LINHAS_MARGEM_INFERIOR = 1;
 var COLUNAS_MARGEM_DIREITA = 3;
@@ -601,13 +602,12 @@ function popula_matriz_jogo(linhas,colunas){
 var intervalo;
 
 function tempo(op) {
-	if (op == 1) {
-		document.getElementById('parar').style.display = "block";
-		document.getElementById('comeca').style.display = "none";
-	}
+
 	var s = 1;
 	var m = 0;
 	var h = 0;
+
+  if (op == 1){
 	intervalo = window.setInterval(function() {
 		if (s == 60) { m++; s = 0; }
 		if (m == 60) { h++; s = 0; m = 0; }
@@ -617,13 +617,13 @@ function tempo(op) {
 		s++;
 	},1000);
 }
+}
 
 function parar() {
 	window.clearInterval(intervalo);
-	document.getElementById('parar').style.display = "none";
-	document.getElementById('comeca').style.display = "block";
 }
 
-
-
 window.onload=tempo;
+
+//	document.getElementById('parar').style.display = "none";
+//	document.getElementById('comeca').style.display = "block";
