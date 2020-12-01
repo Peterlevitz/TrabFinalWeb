@@ -8,7 +8,7 @@ var tabuleiro_sentido = "transform: rotate(0deg);";
 var matriz_jogo = [];
 var tabuleiro = '1';
 var LINHAS_MARGEM_SUPERIOR = 4;
-var LINHAS_MARGEM_INFERIOR = 1;
+var LINHAS_MARGEM_INFERIOR = 3;
 var COLUNAS_MARGEM_DIREITA = 3;
 var COLUNAS_MARGEM_ESQUERDA = 3;
 var VAZIO = 0;
@@ -117,10 +117,10 @@ function retornaPrimeiraColuna(componente) {
 function retornaMatrizElemento(componente) {
     if ('barra' == componente){
         return [
-            [VAZIO, VAZIO, OCUPADO, VAZIO],    
-            [VAZIO, VAZIO, OCUPADO, VAZIO],    
-            [VAZIO, VAZIO, OCUPADO, VAZIO],    
-            [VAZIO, VAZIO, OCUPADO, VAZIO],    
+            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],    
+            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],    
+            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],    
+            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],    
         ];
     }
     else if ('quadrado' == componente){
@@ -484,18 +484,32 @@ function gira(){
 
     var matriz_nova = [];
     var matriz_elemento_nova = [];
-    for (i=colunas_matriz - 1; i >= 0 ; i--){
+    for (j=colunas_matriz - 1; j >= 0 ; j--){
         item = [];
         item_elemento = [];
-        for(j=0; j < linhas_matriz; j++){
-            item_elemento.push(elemento.matriz[j][i]);
-            item.push(matriz_componente[j][i].outerHTML);
+        for(i=0; i < linhas_matriz; i++){
+            item_elemento.push(elemento.matriz[i][j]);
+            item.push(matriz_componente[i][j].outerHTML);
         }
         matriz_nova.push(item);
-        matriz_elemento_nova.push(item_elemento)
+        matriz_elemento_nova.push(item_elemento);
     }
-    elemento.matriz = matriz_elemento_nova
+    elemento.matriz = matriz_elemento_nova;
+    var coluna_ = colunas_matriz;
+    var colunas_matriz = linhas_matriz;
+    var linhas_matriz = coluna_;
     if(!validaMovimento_novo()){
+       
+        matriz_elemento_nova = [];
+
+        for(j=0; j < colunas_matriz; j++){
+            item_elemento =[];
+            for (i=(linhas_matriz - 1); i >= 0 ; i--){
+                item_elemento.push(elemento.matriz[i][j]);
+            }
+            matriz_elemento_nova.push(item_elemento);
+        }
+        elemento.matriz = matriz_elemento_nova;
         return;
     }
     var html = ""
@@ -511,7 +525,7 @@ function gira(){
         html += "</div>"; 
     }
 
-    elemento.innerHTML = html;
+    elemento_html.innerHTML = html;
 
 }
 
