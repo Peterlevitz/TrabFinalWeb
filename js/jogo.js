@@ -6,7 +6,12 @@ var colunas = 0;
 var tamanho_quadrado = 0;
 var tabuleiro_sentido = "transform: rotate(0deg);";
 var matriz_jogo = [];
+var tempo_inicio = Date.now();
+var speed = 1000;
+var score = 0;
 var tabuleiro = '1';
+var op = 0;
+var pausa = 0;
 var LINHAS_MARGEM_SUPERIOR = 4;
 var LINHAS_MARGEM_INFERIOR = 3;
 var COLUNAS_MARGEM_DIREITA = 3;
@@ -19,6 +24,7 @@ var status = 'rodando';
 function criaElemento(){//chamada para criar objetol-esquerda
     var componente = retornaComponente();
     var controlePosHorizontal = 0;
+    pausa = 0;
     elemento = new Object();
     elemento.tipo = componente;//barra,quadrado,etc
     elemento.top = retornaTop(componente);//posiçao vertical do elemento
@@ -34,15 +40,14 @@ function criaElemento(){//chamada para criar objetol-esquerda
     var elemento_atual = document.getElementById("elemento-atual");
     jogo.innerHTML = jogo.innerHTML + elemento.html;
     posicionar();
+    autodrop();
 }
 
 function iniciar(){
-    status = 'rodando';
-    if (document.getElementById)
-    removeElemento();
-    criaTabuleiro();
+  criaTabuleiro();
+  criaElemento();
+  tempo(1);
 }
-
 function retornaPrimeiraLinha(componente) {
     if ('barra' == componente){
         return 0;
@@ -317,6 +322,37 @@ function retornaColunas(componente) {
     return [0];
 }
 
+function autodrop(){
+  const tempo_atual = Date.now();
+  const dif = tempo_atual - tempo_inicio;
+
+  switch(score){
+      case 300:
+          speed = 800;
+          break;
+      case 600:
+          speed = 600;
+          break;
+      case 900:
+          speed = 400;
+          break;
+      case 1200:
+          speed = 300;
+          break;
+      case 1500:
+          speed = 200;
+          break;
+    }
+
+
+  if(dif > speed) {
+    mover_baixo();
+    tempo_inicio = Date.now();
+  }
+  if (pausa != 1)
+   requestAnimationFrame(autodrop);
+}
+
 function mover_celulas_baixo(){
     //reduzir todas as linhas das celulas candidadas
     elemento.celulas_candidatas = elemento.celulas;
@@ -347,6 +383,11 @@ function interromper(){
     criaElemento();
 }
 
+function interromperjogo(){
+    fixarPosicao();
+    pausa = 1;
+}
+
 function fixarPosicao() {
     var linhasHTML = document.getElementById("jogo").getElementsByClassName("alinhamento-horizontal");
     var matriz = elemento["matriz"];
@@ -365,9 +406,9 @@ function fixarPosicao() {
                 matriz_jogo[linha_jogo][coluna_jogo] = OCUPADO
             }
             if (item_matriz_jogo == ESPECIAL || item_matriz_elemento == ESPECIAL){
-                quadrados[coluna_jogo].classList.add('quadrado-especial');
-                matriz_jogo[linha_jogo][coluna_jogo] = ESPECIAL
-            }
+              quadrados[coluna_jogo].classList.add('quadrado-especial');
+              matriz_jogo[linha_jogo][coluna_jogo] = ESPECIAL
+          }
         }
     }
 
@@ -468,7 +509,7 @@ function mover_cima(){
     if (sentido == 'cima') {
         mover_baixo();
     }
-    
+
 }
 
 function gira(){
@@ -518,24 +559,24 @@ function gira(){
     var colunas_matriz = matriz_nova[0].length;
 
     for (i=0; i < linhas_matriz; i++){
-        html += "<div class=\"alinhamento-horizontal \">"; 
+        html += "<div class=\"alinhamento-horizontal \">";
         for(j=0; j < colunas_matriz; j++){
-            html += matriz_nova[i][j]; 
+            html += matriz_nova[i][j];
         }
-        html += "</div>"; 
+        html += "</div>";
     }
 
     elemento_html.innerHTML = html;
 
 }
 
-function show_tab(tipo){
+function show_tab(tipo) {
     tabuleiro = tipo;
     criaTabuleiro();
-}
+    }
 
 function criaTabuleiro() {
-    if (tabuleiro == '1') {
+  if (tabuleiro == '1') {
         linhas = 20;
         colunas = 10;
         tamanho_quadrado = 18;
@@ -593,3 +634,36 @@ function popula_matriz_jogo(linhas,colunas){
     jogo = document.getElementById("jogo");
     jogo.innerHTML = html;
 }
+
+
+
+var intervalo;
+
+function tempo(op) {
+
+	var s = 1;
+	var m = 0;
+	var h = 0;
+
+  if (op == 1){
+	intervalo = window.setInterval(function() {
+		if (s == 60) { m++; s = 0; }
+		if (m == 60) { h++; s = 0; m = 0; }
+		if (h < 10) document.getElementById("hora").innerHTML = "0" + h + "h "; else document.getElementById("hora").innerHTML = h + "h ";
+		if (s < 10) document.getElementById("segundo").innerHTML = "0" + s + "s "; else document.getElementById("segundo").innerHTML = s + "s ";
+		if (m < 10) document.getElementById("minuto").innerHTML = "0" + m + "m "; else document.getElementById("minuto").innerHTML = m + "m ";
+		s++;
+	},1000);
+}
+}
+
+function parar() {
+	window.clearInterval(intervalo);
+  interromperjogo();
+
+}
+
+window.onload=tempo;
+
+//	document.getElementById('parar').style.display = "none";
+//	document.getElementById('comeca').style.display = "block";
