@@ -11,6 +11,7 @@ var speed = 1000;
 var score = 0;
 var tabuleiro = '1';
 var op = 0;
+var pausa = 0;
 var LINHAS_MARGEM_SUPERIOR = 4;
 var LINHAS_MARGEM_INFERIOR = 1;
 var COLUNAS_MARGEM_DIREITA = 3;
@@ -23,6 +24,7 @@ var status = 'rodando';
 function criaElemento(){//chamada para criar objetol-esquerda
     var componente = retornaComponente();
     var controlePosHorizontal = 0;
+    pausa = 0;
     elemento = new Object();
     elemento.tipo = componente;//barra,quadrado,etc
     elemento.top = retornaTop(componente);//posiçao vertical do elemento
@@ -42,12 +44,10 @@ function criaElemento(){//chamada para criar objetol-esquerda
 }
 
 function iniciar(){
-    status = 'rodando';
-    if (document.getElementById)
-    removeElemento();
-    criaTabuleiro();
+  criaTabuleiro();
+  criaElemento();
+  tempo(1);
 }
-
 function retornaPrimeiraLinha(componente) {
     if ('barra' == componente){
         return 0;
@@ -327,27 +327,29 @@ function autodrop(){
   const dif = tempo_atual - tempo_inicio;
 
   switch(score){
-    case 300:
-        speed = 800;
-        break;
-    case 600:
-        speed = 600;
-        break;
-    case 900:
-        speed = 400;
-        break;
-    case 1200:
-        speed = 300;
-        break;
-    case 1500:
-        speed = 200;
-        break;
-  }
+      case 300:
+          speed = 800;
+          break;
+      case 600:
+          speed = 600;
+          break;
+      case 900:
+          speed = 400;
+          break;
+      case 1200:
+          speed = 300;
+          break;
+      case 1500:
+          speed = 200;
+          break;
+    }
+
 
   if(dif > speed) {
     mover_baixo();
     tempo_inicio = Date.now();
   }
+  if (pausa != 1)
    requestAnimationFrame(autodrop);
 }
 
@@ -379,6 +381,11 @@ function interromper(){
     fixarPosicao();
     removeElemento();
     criaElemento();
+}
+
+function interromperjogo(){
+    fixarPosicao();
+    pausa = 1;
 }
 
 function fixarPosicao() {
@@ -639,6 +646,8 @@ function tempo(op) {
 
 function parar() {
 	window.clearInterval(intervalo);
+  interromperjogo();
+
 }
 
 window.onload=tempo;
