@@ -326,6 +326,24 @@ function autodrop(){
   const tempo_atual = Date.now();
   const dif = tempo_atual - tempo_inicio;
 
+  switch(score){
+    case 300:
+        speed = 800;
+        break;
+    case 600:
+        speed = 600;
+        break;
+    case 900:
+        speed = 400;
+        break;
+    case 1200:
+        speed = 300;
+        break;
+    case 1500:
+        speed = 200;
+        break;
+  }
+
   if(dif > speed) {
     mover_baixo();
     tempo_inicio = Date.now();
