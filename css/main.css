@@ -136,7 +136,7 @@ h2{
 }
 
 .escondido{
-    display: none;
+    display: none !important;
 }
 
 .config{
