@@ -1,41 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt">
-    <head>
-        <title>Ranking Global</title>
-        <link rel="stylesheet" type="text/css" href="css/main.css" />
-        <link rel="stylesheet" type="text/css" href="css/geral.css" />
-        <link rel="stylesheet" type="text/css" href="css/ranking.css" />
-        <link rel="stylesheet" type="text/css" href="css/login.css" />
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        <nav class="barra-principal">
-            <ul class="menu alinhamento-horizontal">
-                <li class="item-menu"><a href="main.html">Inicio</a></li>
-                <li class="item-menu"><a href="rankingGlobal.html">Ranking</a></li>
-            </ul>
-            <div class="dropdown">
-                <div class="dropbtn alinhamento-horizontal card-usuario">
-                    <div class="usuario">Nome</div>
-                    <img src="img/usuario.png" alt="foto-usuario" class="imagem-usario">
-                </div>
-                <div class="dropdown-content">
-                    <a href="cadastro.html">
-                        <img src="img/edit-icon.png" alt="icone-edite" class="icone"> - Editar
-                    </a>
-                    <a href="login.html">
-                        <img src="img/logout-icon.png" alt="icone-edite" class="icone"> - Logout
-                    </a>
-                </div>
-            </div>
-        </nav>
-        <div >            
+<?php include 'headerall.php'; ?>
+        <div>
             <header>
                 <img src="img/logoR.png"  alt="Rolling" class="rolling imageRanking">
                 <img src="img/logoT.png"  alt="Tetris" class="imageRanking">
                 <h1>Ranking Global dos Jogadores</h1>
             </header>
-            <div class="content">
            <table class="tabelaGlobal">
                 <tr>
                     <th>Username</th>
@@ -50,7 +19,7 @@
                     <td>ElaSumiuDnv</td>
                     <td>500</td>
                     <td>6</td>
-                </tr>        
+                </tr>
                 <tr>
                     <td>InsoniaMaster</td>
                     <td>450</td>
@@ -60,48 +29,39 @@
                     <td>MiadorDeRole</td>
                     <td>400</td>
                     <td>6</td>
-                </tr>        
+                </tr>
                 <tr>
                     <td>MenosDe170cm</td>
                     <td>350</td>
                     <td>6</td>
-                </tr>        
+                </tr>
                 <tr>
                     <td>CaraDeAmizadesDuvidosas</td>
                     <td>300</td>
                     <td>6</td>
-                </tr>        
+                </tr>
                 <tr>
                     <td>OutroCaraComMenosDe170</td>
                     <td>250</td>
                     <td>6</td>
-                </tr>        
+                </tr>
                 <tr>
                     <td>PedeLogoDemissao</td>
                     <td>200</td>
                     <td>6</td>
-                </tr>        
+                </tr>
                 <tr>
                     <td>TravouDnv</td>
                     <td>150</td>
                     <td>6</td>
-                </tr>        
+                </tr>
                 <tr>
                     <td>DaRisadaDaMinhaCara</td>
                     <td>100</td>
                     <td>6</td>
-                </tr>                
+                </tr>
             </table>
             <br>
             <b>Posição atual do usuário (nome do usuário aqui): (posição atual). </b> <br> <br>
-            </div>
         </div>
-        <footer>
-
-            © Equipe Rolling Tetris SI401A / FT UNICAMP
-    
-        </footer>
-
-    </body>
-
-</html>
+        <?php include 'footer.php'; ?>

@@ -7,11 +7,13 @@
 <head>
     <title> Rolling Tetris</title>
     <meta charset="UTF-8" />
-    <link href="css/login.css" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="css/login.css" />
+<link type="text/css" rel="stylesheet" href="css/geral.css">
 
 </head>
 
 <body>
+
     <header>
         <!---  <h1> Rolling Tetris</h1> -->
 
@@ -20,14 +22,8 @@
 
 
     </header>
-
-
-
-
-
     <section>
-
-        <form action="main.html" method="POST">
+        <form action="?pagina=main" method="POST">
 
             <fieldset>
                 <h2 class="login1">Login</h2>
@@ -48,13 +44,13 @@
                 </div>
 
 
-                <a href="main.html" >
+                <a href="?pagina=main" >
                     <input type="button" value="Entrar" class="enter">
                 </a>
 
 
                 <p class="cadastro">Não possui um usuário Rolling Tetris?
-                    <a href="cadastro.html">Cadastre-se</a>
+                    <a href="?pagina=cadastro">Cadastre-se</a>
                 </p>
                 <a href="#" class="recsenha">Esqueci minha senha</a>
 
@@ -63,19 +59,4 @@
 
 
     </section>
-
-
-
-    <footer>
-
-        © Equipe Rolling Tetris SI401A / FT UNICAMP
-
-    </footer>
-
-
-
-
-
-</body>
-
-</html>
+        <?php include 'footer.php'; ?>

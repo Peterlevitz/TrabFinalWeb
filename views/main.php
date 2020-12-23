@@ -1,38 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <link rel="stylesheet" type="text/css" href="css/geral.css" />
-    <link rel="stylesheet" type="text/css" href="css/ranking.css" />
-    <script src="js/jogo.js"></script>
-    <script src="js/tabuleiro.js"></script>
-    <title>Rolling Tetris</title>
-</head>
-
-<body>
-    <nav class="barra-principal">
-        <ul class="menu alinhamento-horizontal">
-            <li class="item-menu"><a href="main.html">Inicio</a></li>
-            <li class="item-menu"><a href="rankingGlobal.html">Ranking</a></li>
-        </ul>
-        <div class="dropdown">
-            <div class="dropbtn alinhamento-horizontal card-usuario">
-                <div class="usuario">Nome</div>
-                <img src="img/usuario.png" alt="foto-usuario" class="imagem-usario">
-            </div>
-            <div class="dropdown-content">
-                <a href="cadastro.html">
-                    <img src="img/edit-icon.png" alt="icone-edite" class="icone"> - Editar
-                </a>
-                <a href="login.html">
-                    <img src="img/logout-icon.png" alt="icone-edite" class="icone"> - Logout
-                </a>
-            </div>
-        </div>
-    </nav>
+<?php include 'headerall.php'; ?>
     <section class="conteudo">
 
         <div class="tela-principal">
@@ -1604,9 +1570,4 @@
             </div>
         </div>
     </section>
-    <footer>
-        © Equipe Rolling Tetris SI401A / FT UNICAMP
-    </footer>
-</body>
-
-</html>
+    <?php include 'footer.php'; ?>
