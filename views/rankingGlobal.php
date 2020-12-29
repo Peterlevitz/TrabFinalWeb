@@ -31,7 +31,7 @@
                 //faz um looping e cria um array com os campos da consulta
                 while($array = mysql_fetch_array($query)) {
 
-                $nome=$array['usuario'];$pontuacao=$array['pontuacao'];$nivel=$array['nivel']; 
+                $usuario=$array['usuario'];$pontuacao=$array['pontuacao'];$nivel=$array['nivel']; 
                 ?>
 
                     <tr>
