@@ -51,45 +51,51 @@
 
                 <div class="item-info posicao">1</div>
             <div class="item-info">
+                
+                
+                
 
-                <table>
-                    <tr>
-                        <th><b>Nome</b></th>
-                        <th><b>Pontuação Obtida</b></th>
-                        <th><b>Nível Atingido</b></th>
-                        <th><b>Duração da Partida</b></th>
-                    </tr>
-                    <tr>
-                        <td>Nome</td>
-                        <td>Pontuação Obtida</td>
-                        <td>Nível Atingido</td>
-                        <td>Duração da Partida</td>
-                    </tr>
-                    <tr>
-                        <td>Nome</td>
-                        <td>Pontuação Obtida</td>
-                        <td>Nível Atingido</td>
-                        <td>Duração da Partida</td>
-                    </tr>
-                    <tr>
-                        <td>Nome</td>
-                        <td>Pontuação Obtida</td>
-                        <td>Nível Atingido</td>
-                        <td>Duração da Partida</td>
-                    </tr>
-                    <tr>
-                        <td>Nome</td>
-                        <td>Pontuação Obtida</td>
-                        <td>Nível Atingido</td>
-                        <td>Duração da Partida</td>
-                    </tr>
-                    <tr>
-                        <td>Nome</td>
-                        <td>Pontuação Obtida</td>
-                        <td>Nível Atingido</td>
-                        <td>Duração da Partida</td>
-                    </tr>
-                </table>
+   <table width="380">
+        <tr>
+            <td width="89">Posição</td>
+            <td width="142">Nome</td>
+            <td width="114">Pontuação Obtida</td>
+            <td width="228">Nível Atingido	</td>
+            <td width="228">Duração da Partida	</td>
+        </tr>
+
+        <?php $posicao = 1; //variavel
+
+    // Inclui o arquivo que faz a conexão ao banco de dados
+    include("includes/mysqli.php");
+
+    //consulta sql
+    $query = mysql_query("SELECT U.usuario, R.pontuacao, R.nivel, R.duracaoPartida FROM ranking R
+                            left join usuario U on U.id = R.idusuario
+                            where U.usuario =  <usuario>                                             /* Alterar usuario da sessão */
+
+                             ORDER BY R.pontuacao
+                            Desc Limit 5") or die(mysql_error());
+
+    //faz um looping e cria um array com os campos da consulta
+    while($array = mysql_fetch_array($query)) {
+
+    $nome=$array['usuario'];$pontuacao=$array['pontuacao'];$nivel=$array['nivel']; $duracaoPartida=$array['duracaoPartida'];
+
+    ?>
+
+        <tr>
+            <td><?php echo $posicao; ?></td>
+            <td><?php echo $usuario; ?></td>
+            <td><?php echo $pontuacao; ?></td>
+            <td><?php echo $nivel; ?></td>
+            <td><?php echo $duracaoPartida; ?></td>
+        </tr>
+
+        <?php
+    $posicao = $posicao + 1; // acumula proxima posicao ate terminar} ?>
+
+    </table>
             </div>
 
         <div id='barra' class="escondido">
