@@ -4,17 +4,17 @@
 <head>
     <title> Rolling Tetris</title>
     <meta charset="UTF-8" />
-            <link type="text/css" rel="stylesheet" href="css/estilocad.css">
-<link type="text/css" rel="stylesheet" href="css/geral.css">
+            <link type="text/css" rel="stylesheet" href="../css/estilocad.css">
+<link type="text/css" rel="stylesheet" href="../css/geral.css">
 
 </head>
 
 <body>
         <header>
-            <img src="img/logoR.png" alt="Rolling" class="rolling imageRanking">
-            <img src="img/logoT.png" alt="Tetris" class="imageRanking">
+            <img src="../img/logoR.png" alt="Rolling" class="rolling imageRanking">
+            <img src="../img/logoT.png" alt="Tetris" class="imageRanking">
         </header>
-        <form action="confirmcad.php" method="post">
+        <form action="../confirmcad.php" method="post">
             <fieldset>
                 <h1 class="cadname">Cadastro</h1>
                 <div class="row">
@@ -63,8 +63,8 @@
 
                 <button type="submit" class="cadastrar">Cadastrar</button><br>
                     <p>Já possui uma conta?
-                        <a href="?pagina=login">Clique aqui para Logar.</a>
+                        <a href="login.php">Clique aqui para Logar.</a>
                     </p>
             </fieldset>
         </form>
-        <?php include 'footer.php'; ?>
+        <?php include '../footer.php'; ?>

@@ -1,8 +1,12 @@
-<?php include 'headerall.php'; ?>
+<?php
+session_start();
+include '../headerall.php';
+include '../verify_login.php';
+ ?>
         <div>
             <header>
-                <img src="img/logoR.png"  alt="Rolling" class="rolling imageRanking">
-                <img src="img/logoT.png"  alt="Tetris" class="imageRanking">
+                <img src="../img/logoR.png"  alt="Rolling" class="rolling imageRanking">
+                <img src="../img/logoT.png"  alt="Tetris" class="imageRanking">
                 <h1>Ranking Global dos Jogadores</h1>
             </header>
            <table class="tabelaGlobal">
@@ -64,4 +68,4 @@
             <br>
             <b>Posição atual do usuário (nome do usuário aqui): (posição atual). </b> <br> <br>
         </div>
-        <?php include 'footer.php'; ?>
+        <?php include '../footer.php'; ?>

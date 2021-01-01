@@ -20,8 +20,6 @@ $senha2 = md5($_POST['senha2']);
      echo "ERRO: <br/><br/>";
      echo "Campos obrigatórios";
 
-
-     include "headerlogin.php";
      include "login.php";
  }
 
@@ -56,7 +54,7 @@ $senha2 = md5($_POST['senha2']);
 
              unset($username);
          } ?>
-        <a href="index.php">Clique aqui para voltar.</a>
+        <a href="views/login.php">Clique aqui para voltar.</a>
         <?php
      }
      else{
@@ -75,7 +73,7 @@ $senha2 = md5($_POST['senha2']);
         {
             echo "Ocorreu um erro ao criar sua conta, entre em contato.";
         }
-        header("location:index.php");
+        header("location: views/cadastro.php");
       }
     }
 ?>

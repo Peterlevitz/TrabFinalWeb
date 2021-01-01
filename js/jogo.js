@@ -120,10 +120,10 @@ function retornaPrimeiraColuna(componente) {
 function retornaMatrizElemento(componente) {
     if ('barra' == componente){
         return [
-            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],    
-            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],    
-            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],    
-            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],    
+            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],
+            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],
+            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],
+            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],
         ];
     }
     else if ('quadrado' == componente){
@@ -235,7 +235,7 @@ function interromper(){
     fixarPosicao();
     removeElemento();
     verifica_eliminar_linha();
-    
+
     criaElemento();
 }
 
@@ -288,7 +288,7 @@ function verifica_eliminar_linha(){
             }
         }
         if (remove_linha) {
-            elimina_linha(i).push(i);
+            elimina_linha(i);
             if (girar_cadidado) {
                 girar_oficial = true;
             }
@@ -298,7 +298,7 @@ function verifica_eliminar_linha(){
     if (girar_oficial){
         girar_tabuleiro();
     }
-    
+
     pontuar(linhas_eliminadas.length);
 }
 
@@ -312,7 +312,7 @@ function elimina_linha(indice){
     var linhasHTML = document.getElementById("jogo").getElementsByClassName("alinhamento-horizontal");
     for (var i = indice; i >= 1; i--){
         linhasHTML[i].innerHTML = linhasHTML[i-1].innerHTML
-        matriz_jogo[i] = matriz_jogo[i-1]; 
+        matriz_jogo[i] = matriz_jogo[i-1];
     }
 }
 
@@ -355,7 +355,7 @@ function mover_direta(){
     if (!validaMovimento_novo()){
         elemento.primeira_coluna -=1;
     }
-    
+
     posicionar();
 }
 
@@ -364,7 +364,7 @@ function mover_esquerda(){
     if (!validaMovimento_novo()){
         elemento.primeira_coluna +=1;
     }
-    
+
     posicionar();
 }
 
@@ -392,7 +392,7 @@ function derrota(){
 }
 
 function salvarJogo(){
-    
+
 }
 
 function gira(){
@@ -423,7 +423,7 @@ function gira(){
     var colunas_matriz = linhas_matriz;
     var linhas_matriz = coluna_;
     if(!validaMovimento_novo()){
-       
+
         matriz_elemento_nova = [];
 
         for(j=0; j < colunas_matriz; j++){

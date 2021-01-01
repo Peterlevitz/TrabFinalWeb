@@ -1,4 +1,9 @@
-<?php include 'headerall.php'; ?>
+<?php
+session_start();
+include '../headerall.php';
+include '../verify_login.php';
+
+?>
     <section class="conteudo">
 
         <div class="tela-principal">
@@ -1570,4 +1575,4 @@
             </div>
         </div>
     </section>
-    <?php include 'footer.php'; ?>
+    <?php include '../footer.php'; ?>
