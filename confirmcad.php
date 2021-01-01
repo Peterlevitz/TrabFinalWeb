@@ -54,7 +54,7 @@ $senha2 = md5($_POST['senha2']);
 
              unset($username);
          } ?>
-        <a href="views/login.php">Clique aqui para voltar.</a>
+        <a href="views/cadastro.php">Clique aqui para voltar.</a>
         <?php
      }
      else{

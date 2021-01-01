@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -20,7 +21,7 @@
         </ul>
         <div class="dropdown">
             <div class="dropbtn alinhamento-horizontal card-usuario">
-                <div class="usuario">Nome</div>
+                <div class="usuario">Olá, <?php echo $_SESSION['userLogin'];?></div>
                 <img src="../img/usuario.png" alt="foto-usuario" class="imagem-usario">
             </div>
             <div class="dropdown-content">

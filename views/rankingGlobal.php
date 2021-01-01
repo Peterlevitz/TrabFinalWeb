@@ -1,5 +1,4 @@
 <?php
-session_start();
 include '../headerall.php';
 include '../verify_login.php';
  ?>
@@ -9,8 +8,8 @@ include '../verify_login.php';
                 <img src="../img/logoT.png"  alt="Tetris" class="imageRanking">
                 <h1>Ranking Global dos Jogadores</h1>
             </header>
-                
-                
+
+
  <table class="tabelaGlobal">
                     <tr>
                         <td width="89">Posição</td>
@@ -23,7 +22,7 @@ include '../verify_login.php';
                     <?php $posicao = 1; //variavel
 
                 // Inclui o arquivo que faz a conexão ao banco de dados
-                include("includes/mysqli.php");
+                include("../bd.php");
 
                 //consulta sql
                 $query = mysql_query("SELECT U.usuario, R.pontuacao, R.nivel FROM ranking R
@@ -35,7 +34,8 @@ include '../verify_login.php';
                 //faz um looping e cria um array com os campos da consulta
                 while($array = mysql_fetch_array($query)) {
 
-                $usuario=$array['usuario'];$pontuacao=$array['pontuacao'];$nivel=$array['nivel']; 
+                $usuario=$array['usuario'];$pontuacao=$array['pontuacao'];$nivel=$array['nivel'];
+              }
                 ?>
 
                     <tr>

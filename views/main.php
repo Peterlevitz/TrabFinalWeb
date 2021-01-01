@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include '../headerall.php';
 include '../verify_login.php';
 
@@ -56,9 +56,9 @@ include '../verify_login.php';
 
                 <div class="item-info posicao">1</div>
             <div class="item-info">
-                
-                
-                
+
+
+
 
    <table width="380">
         <tr>
@@ -72,7 +72,7 @@ include '../verify_login.php';
         <?php $posicao = 1; //variavel
 
     // Inclui o arquivo que faz a conexão ao banco de dados
-    include("includes/mysqli.php");
+    include("../bd.php");
 
     //consulta sql
     $query = mysql_query("SELECT U.usuario, R.pontuacao, R.nivel, R.duracaoPartida FROM ranking R
@@ -86,7 +86,7 @@ include '../verify_login.php';
     while($array = mysql_fetch_array($query)) {
 
     $usuario=$array['usuario'];$pontuacao=$array['pontuacao'];$nivel=$array['nivel']; $duracaoPartida=$array['duracaoPartida'];
-
+  }
     ?>
 
         <tr>
