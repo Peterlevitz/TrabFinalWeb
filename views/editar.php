@@ -63,6 +63,7 @@ $valores = $result->fetch_assoc();
                 </div>
 
                 <button type="submit" class="cadastrar">Editar</button><br>
+                <a href="main.php"><button type="button" class="voltar">Voltar</button></a><br>
             </fieldset>
         </form>
     <?php include '../footer.php'; ?>
