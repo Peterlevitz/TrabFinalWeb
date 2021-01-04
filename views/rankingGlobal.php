@@ -9,47 +9,28 @@ include '../verify_login.php';
                 <h1>Ranking Global dos Jogadores</h1>
             </header>
 
+<table class="tabelaGlobal">
+ 
+                        <?php
+                          include("../bd.php");
 
- <table class="tabelaGlobal">
-                    <tr>
-                        <td width="89">Posição</td>
-                        <td width="142">Nome</td>
-                        <td width="114">Pontuação</td>
-                        <td width="228">Nível Máximo</td>
-
-                    </tr>
-
-                    <?php $posicao = 1; //variavel
-
-                // Inclui o arquivo que faz a conexão ao banco de dados
-                include("../bd.php");
-
-                //consulta sql
-                $query = mysql_query("SELECT U.username, R.pontuacao, R.nivel FROM ranking R
-                                        left join usuarios U on U.id = R.idusuario
+                         
 
 
-                                         ORDER BY R.pontuacao") or die(mysql_error());
-
-                //faz um looping e cria um array com os campos da consulta
-                while($array = mysql_fetch_array($query)) {
-
-                $username=$array['username'];$pontuacao=$array['pontuacao'];$nivel=$array['nivel'];
-              }
-                ?>
-
-                    <tr>
-                        <td><?php echo $posicao; ?></td>
-                        <td><?php echo $usuario; ?></td>
-                        <td><?php echo $pontuacao; ?></td>
-                        <td><?php echo $nivel; ?></td>
-
-                    </tr>
-
-                    <?php
-                $posicao = $posicao + 1; // acumula proxima posicao ate terminar} ?>
-
-</table>
+                        $sql = "SELECT usuarios.username, ranking.pontuacao, ranking.nivel, ranking.duracaoPartida FROM usuarios,ranking where usuarios.id = ranking.idusuario  ORDER BY ranking.pontuacao desc";
+                        $result = $con->query($sql);
+                        if ($result->num_rows > 0){
+                            echo "<table><tr><th><b>Nome</b></th><th><b>Pontuação Obtida</b></th><th><b>Nível Atingido</b></th><th><b>Duração da Partida</b></th> </tr><tr>";          
+                        while ($row = $result->fetch_assoc()){
+                        echo "<tr><td>".$row["username"]."</td><td>".$row["pontuacao"]."</td><td>".$row["nivel"]."</td><td>".$row["duracaoPartida"]."</td></tr>";
+                        }
+                        echo "</table>";
+                    }
+                        else{
+                            echo "voce ainda não jogou tetris, continue assim";
+                        }
+                    ?>
+ 
             <br>
             <b>Posição atual do usuário (nome do usuário aqui): (posição atual). </b> <br> <br>
         </div>
