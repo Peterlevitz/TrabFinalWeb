@@ -25,8 +25,8 @@ include '../verify_login.php';
                 include("../bd.php");
 
                 //consulta sql
-                $query = mysql_query("SELECT U.usuario, R.pontuacao, R.nivel FROM ranking R
-                                        left join usuario U on U.id = R.idusuario
+                $query = mysql_query("SELECT U.username, R.pontuacao, R.nivel FROM ranking R
+                                        left join usuarios U on U.id = R.idusuario
 
 
                                          ORDER BY R.pontuacao") or die(mysql_error());
@@ -34,7 +34,7 @@ include '../verify_login.php';
                 //faz um looping e cria um array com os campos da consulta
                 while($array = mysql_fetch_array($query)) {
 
-                $usuario=$array['usuario'];$pontuacao=$array['pontuacao'];$nivel=$array['nivel'];
+                $username=$array['username'];$pontuacao=$array['pontuacao'];$nivel=$array['nivel'];
               }
                 ?>
 
