@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -25,7 +25,7 @@
                 <img src="../img/usuario.png" alt="foto-usuario" class="imagem-usario">
             </div>
             <div class="dropdown-content">
-                <a href="cadastro.php">
+                <a href="editar.php">
                     <img src="../img/edit-icon.png" alt="icone-edite" class="icone"> - Editar
                 </a>
                 <a href="../logout.php">
