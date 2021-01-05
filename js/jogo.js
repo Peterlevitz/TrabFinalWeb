@@ -50,6 +50,8 @@ function iniciar(){
   criaElemento();
   tempo(1);
   nivel = '1';
+  score = 0;
+  pontuacao = score;
 }
 function retornaPrimeiraLinha(componente) {
     if ('barra' == componente){
@@ -398,6 +400,7 @@ function mover_cima(){
 
 function derrota(){
     salvarJogo();
+    dinaUptade();
     iniciar();
 }
 
@@ -412,8 +415,26 @@ function salvarJogo(){
     var sendResults = new XMLHttpRequest();
     url = '../partida.php'; 
     sendResults.open("POST", url, true);
-    sendResults.send(gameResult);
+    sendResults.onreadystatechange = function() {
+        if (sendResults.readyState == 4) {
+            if (sendResults.status = 200)
+                console.log(sendResults.responseText);
+            }
+        }
+        sendResults.send(gameResult);
+}
 
+function dinaUptade(){
+    var sendResults = new XMLHttpRequest();
+    url = '../rankingUser.php'; 
+    sendResults.open("GET", url, true);
+    sendResults.onreadystatechange = function() {
+        if (sendResults.readyState == 4) {
+            if (sendResults.status = 200)
+                document.getElementById('rankingUser').innerHTML = sendResults.responseText;
+            }
+        }
+        sendResults.send();
 }
 
 function gira(){

@@ -23,3 +23,4 @@ VALUES
 
 $sql = mysqli_query($con, $queryinsert);
 
+echo "comi o cu de quem ta lendo";

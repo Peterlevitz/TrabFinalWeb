@@ -9,7 +9,7 @@ include '../verify_login.php';
                 <h1>Ranking Global dos Jogadores</h1>
             </header>
 
-<table class="tabelaGlobal">
+
  
                         <?php
                           include("../bd.php");
@@ -20,7 +20,7 @@ include '../verify_login.php';
                         $sql = "SELECT usuarios.username, ranking.pontuacao, ranking.nivel, ranking.duracaoPartida FROM usuarios,ranking where usuarios.id = ranking.idusuario  ORDER BY ranking.pontuacao desc";
                         $result = $con->query($sql);
                         if ($result->num_rows > 0){
-                            echo "<table><tr><th><b>Nome</b></th><th><b>Pontuação Obtida</b></th><th><b>Nível Atingido</b></th><th><b>Duração da Partida</b></th> </tr><tr>";          
+                            echo "<table class='tabelaGlobal'><tr><th><b>Nome</b></th><th><b>Pontuação Obtida</b></th><th><b>Nível Atingido</b></th><th><b>Duração da Partida</b></th> </tr><tr>";          
                         while ($row = $result->fetch_assoc()){
                         echo "<tr><td>".$row["username"]."</td><td>".$row["pontuacao"]."</td><td>".$row["nivel"]."</td><td>".$row["duracaoPartida"]."</td></tr>";
                         }
