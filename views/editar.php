@@ -1,5 +1,6 @@
 <?php
 session_start();
+include '../verify_login.php';
 include "../bd.php";
 
 

@@ -1,15 +1,10 @@
 <?php
-
 include '../headerall.php';
 include '../verify_login.php';
 include '../bd.php';
 ?>
     <section class="conteudo">
-
         <div class="tela-principal">
-
-
-
             <div class="ext-jogo">
                 <div class='config'>
                     <div>Tamanho Tabuleiro:</div>
@@ -23,11 +18,7 @@ include '../bd.php';
                 <div id="show">
 
                 </div>
-
-
             </div>
-
-
         </div>
 
         <div class="info">
@@ -1534,7 +1525,6 @@ include '../bd.php';
                 <div class="quadrado"></div>
                 <div class="quadrado "></div>
                 <div class="quadrado "></div>
-
             </div>
         </div>
     </section>

@@ -8,15 +8,8 @@ include '../verify_login.php';
                 <img src="../img/logoT.png"  alt="Tetris" class="imageRanking">
                 <h1>Ranking Global dos Jogadores</h1>
             </header>
-
-
- 
                         <?php
                           include("../bd.php");
-
-                         
-
-
                         $sql = "SELECT usuarios.username, ranking.pontuacao, ranking.nivel, ranking.duracaoPartida FROM usuarios,ranking where usuarios.id = ranking.idusuario  ORDER BY ranking.pontuacao desc";
                         $result = $con->query($sql);
                         if ($result->num_rows > 0){
@@ -30,7 +23,6 @@ include '../verify_login.php';
                             echo "Não contem pontuação do Tetris";
                         }
                     ?>
- 
             <br>
             <b>Posição atual do usuário (nome do usuário aqui): (posição atual). </b> <br> <br>
         </div>
