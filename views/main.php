@@ -2,7 +2,7 @@
 
 include '../headerall.php';
 include '../verify_login.php';
-
+include '../bd.php';
 ?>
     <section class="conteudo">
 
@@ -35,11 +35,15 @@ include '../verify_login.php';
             <table class='item-info tabela-info'>
                 <tr>
                     <td>Tempo partida</td>
-                    <td><span id="hora">00 h</span><span id="minuto">00 m</span><span id="segundo">00 s</span><br></td>
+                    <td id='duracaoPartida'><span id="hora">00:</span><span id="minuto">00:</span><span id="segundo">00</span><br></td>
                 </tr>
                 <tr>
                     <td>Pontuação</td>
-                    <td>0</td>
+                    <td id = 'pontuacao'>0</td>
+                </tr>
+                <tr>
+                    <td>Nivel</td>
+                    <td id = 'nivel'>0</td>
                 </tr>
                 <tr>
                     <td>Linhas Eliminadas</td>
@@ -54,54 +58,23 @@ include '../verify_login.php';
                 </div>
 
 
-                <div class="item-info posicao">1</div>
-            <div class="item-info">
-
-
-
-
-   <table width="380">
-        <tr>
-            <td width="89">Posição</td>
-            <td width="142">Nome</td>
-            <td width="114">Pontuação Obtida</td>
-            <td width="228">Nível Atingido	</td>
-            <td width="228">Duração da Partida	</td>
-        </tr>
-
-        <?php $posicao = 1; //variavel
-
-    // Inclui o arquivo que faz a conexão ao banco de dados
-    include("../bd.php");
-
-    //consulta sql
-    $query = mysql_query("SELECT U.usuario, R.pontuacao, R.nivel, R.duracaoPartida FROM ranking R
-                            left join usuario U on U.id = R.idusuario
-                            where U.usuario =  <usuario>                                             /* Alterar usuario da sessão */
-
-                             ORDER BY R.pontuacao
-                            Desc Limit 5") or die(mysql_error());
-
-    //faz um looping e cria um array com os campos da consulta
-    while($array = mysql_fetch_array($query)) {
-
-    $usuario=$array['usuario'];$pontuacao=$array['pontuacao'];$nivel=$array['nivel']; $duracaoPartida=$array['duracaoPartida'];
-  }
-    ?>
-
-        <tr>
-            <td><?php echo $posicao; ?></td>
-            <td><?php echo $usuario; ?></td>
-            <td><?php echo $pontuacao; ?></td>
-            <td><?php echo $nivel; ?></td>
-            <td><?php echo $duracaoPartida; ?></td>
-        </tr>
-
-        <?php
-    $posicao = $posicao + 1; // acumula proxima posicao ate terminar} ?>
-
-    </table>
-            </div>
+                <div class="item-info">
+                        <?php
+                        $currentUser = $_SESSION['userLogin'];
+                        $sql = "SELECT u.username, r.pontuacao, r.nivel, r.duracaoPartida FROM ranking r INNER JOIN usuarios u ON u.id = r.idusuario where u.username = '{$currentUser}' ORDER by r.pontuacao DESC LIMIT 5 ";
+                        $result = $con->query($sql);
+                        if ($result->num_rows > 0){
+                            echo "<table><tr><th><b>Nome</b></th><th><b>Pontuação Obtida</b></th><th><b>Nível Atingido</b></th><th><b>Duração da Partida</b></th> </tr><tr>";          
+                        while ($row = $result->fetch_assoc()){
+                        echo "<tr><td>".$row["username"]."</td><td>".$row["pontuacao"]."</td><td>".$row["nivel"]."</td><td>".$row["duracaoPartida"]."</td></tr>";
+                        }
+                        echo "</table>";
+                    }
+                        else{
+                            echo "voce ainda não jogou tetris, continue assim";
+                        }
+                    ?>
+                </div>
 
         <div id='barra' class="escondido">
             <div class="alinhamento-horizontal">
