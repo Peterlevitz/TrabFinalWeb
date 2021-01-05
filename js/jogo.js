@@ -398,16 +398,11 @@ function mover_cima(){
 
 }
 
-function derrota(){
-    salvarJogo();
-    dinaUptade();
-    iniciar();
-}
-
 function salvarJogo(){
     pontuacao = score;
     duracao = document.getElementById('duracaoPartida').innerText;
 
+    
     gameResult.append('pontuacao', pontuacao);
     gameResult.append('nivel', nivel);
     gameResult.append('duracaoPartida', duracao);
@@ -419,6 +414,7 @@ function salvarJogo(){
         if (sendResults.readyState == 4) {
             if (sendResults.status = 200)
                 console.log(sendResults.responseText);
+                dinaUptade();
             }
         }
         sendResults.send(gameResult);
@@ -435,6 +431,14 @@ function dinaUptade(){
             }
         }
         sendResults.send();
+}
+
+function derrota(){
+    salvarJogo();
+
+    //dinaUptade();
+
+    iniciar();
 }
 
 function gira(){
