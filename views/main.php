@@ -71,7 +71,7 @@ include '../bd.php';
                         echo "</table>";
                     }
                         else{
-                            echo "voce ainda não jogou tetris, continue assim";
+                            echo "Não contem pontuação do Tetris";
                         }
                     ?>
                 </div>
