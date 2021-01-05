@@ -1,7 +1,7 @@
 <?php
 include '../headerall.php';
 include '../verify_login.php';
-
+include '../bd.php';
 ?>
     <section class="conteudo">
         <div class="tela-principal">
@@ -26,11 +26,15 @@ include '../verify_login.php';
             <table class='item-info tabela-info'>
                 <tr>
                     <td>Tempo partida</td>
-                    <td><span id="hora">00 h</span><span id="minuto">00 m</span><span id="segundo">00 s</span><br></td>
+                    <td id='duracaoPartida'><span id="hora">00:</span><span id="minuto">00:</span><span id="segundo">00</span><br></td>
                 </tr>
                 <tr>
                     <td>Pontuação</td>
-                    <td>0</td>
+                    <td id = 'pontuacao'>0</td>
+                </tr>
+                <tr>
+                    <td>Nivel</td>
+                    <td id = 'nivel'>0</td>
                 </tr>
                 <tr>
                     <td>Linhas Eliminadas</td>
@@ -44,12 +48,11 @@ include '../verify_login.php';
                 </div>
                 </div>
 
-                <div class="item-info posicao">1</div>
 
-            <div class="item-info">
+                <div class="item-info">
                         <?php
-                          include("../bd.php");
-                        $sql = "SELECT usuarios.username, ranking.pontuacao, ranking.nivel, ranking.duracaoPartida FROM usuarios,ranking where usuarios.id = ranking.idusuario ORDER BY ranking.pontuacao desc ";
+                        $currentUser = $_SESSION['userLogin'];
+                        $sql = "SELECT u.username, r.pontuacao, r.nivel, r.duracaoPartida FROM ranking r INNER JOIN usuarios u ON u.id = r.idusuario where u.username = '{$currentUser}' ORDER by r.pontuacao DESC LIMIT 5 ";
                         $result = $con->query($sql);
                         if ($result->num_rows > 0){
                             echo "<table><tr><th><b>Nome</b></th><th><b>Pontuação Obtida</b></th><th><b>Nível Atingido</b></th><th><b>Duração da Partida</b></th> </tr><tr>";
@@ -59,7 +62,7 @@ include '../verify_login.php';
                         echo "</table>";
                     }
                         else{
-                            echo "voce ainda não jogou tetris, continue assim";
+                            echo "Não contem pontuação do Tetris";
                         }
                     ?>
                 </div>

@@ -10,27 +10,21 @@ include '../verify_login.php';
             </header>
 
 <table class="tabelaGlobal">
- 
                         <?php
                           include("../bd.php");
-
-                         
-
-
                         $sql = "SELECT usuarios.username, ranking.pontuacao, ranking.nivel, ranking.duracaoPartida FROM usuarios,ranking where usuarios.id = ranking.idusuario  ORDER BY ranking.pontuacao desc";
                         $result = $con->query($sql);
                         if ($result->num_rows > 0){
-                            echo "<table><tr><th><b>Nome</b></th><th><b>Pontuação Obtida</b></th><th><b>Nível Atingido</b></th><th><b>Duração da Partida</b></th> </tr><tr>";          
+                            echo "<table><tr><th><b>Nome</b></th><th><b>Pontuação Obtida</b></th><th><b>Nível Atingido</b></th><th><b>Duração da Partida</b></th> </tr><tr>";
                         while ($row = $result->fetch_assoc()){
                         echo "<tr><td>".$row["username"]."</td><td>".$row["pontuacao"]."</td><td>".$row["nivel"]."</td><td>".$row["duracaoPartida"]."</td></tr>";
                         }
                         echo "</table>";
                     }
                         else{
-                            echo "voce ainda não jogou tetris, continue assim";
+                            echo "Não contem pontuação do Tetris";
                         }
                     ?>
- 
             <br>
             <b>Posição atual do usuário (nome do usuário aqui): (posição atual). </b> <br> <br>
         </div>

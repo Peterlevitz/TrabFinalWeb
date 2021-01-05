@@ -22,6 +22,10 @@ var ESPECIAL = 2;
 var status = 'rodando';
 var linhas_eliminadas = [];
 var is_especial = false;
+var pontuacao='';
+var nivel = '';
+var duracao = '';
+var gameResult = new FormData();
 
 function criaElemento(){//chamada para criar objetol-esquerda
     var componente = retornaComponente();
@@ -45,6 +49,7 @@ function iniciar(){
   criaTabuleiro();
   criaElemento();
   tempo(1);
+  nivel = '1';
 }
 function retornaPrimeiraLinha(componente) {
     if ('barra' == componente){
@@ -120,10 +125,10 @@ function retornaPrimeiraColuna(componente) {
 function retornaMatrizElemento(componente) {
     if ('barra' == componente){
         return [
-            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],
-            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],
-            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],
-            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],
+            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],    
+            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],    
+            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],    
+            [VAZIO, VAZIO, OCUPADO, VAZIO, VAZIO],    
         ];
     }
     else if ('quadrado' == componente){
@@ -159,7 +164,6 @@ function retornaMatrizElemento(componente) {
             [OCUPADO, OCUPADO, OCUPADO],
             [VAZIO, VAZIO, VAZIO],
         ]
-        return 2;
     }
     else if ('especial' == componente){
         return [[ESPECIAL]];
@@ -188,19 +192,24 @@ function autodrop(){
 
   switch(score){
       case 300:
-          speed = 800;
+          speed = 100;
+          nivel = '2';
           break;
       case 600:
           speed = 600;
+          nivel = '3';
           break;
       case 900:
           speed = 400;
+          nivel = '4';
           break;
       case 1200:
           speed = 300;
+          nivel = '5';
           break;
       case 1500:
           speed = 200;
+          nivel = '6';
           break;
     }
 
@@ -235,7 +244,7 @@ function interromper(){
     fixarPosicao();
     removeElemento();
     verifica_eliminar_linha();
-
+    
     criaElemento();
 }
 
@@ -298,24 +307,26 @@ function verifica_eliminar_linha(){
     if (girar_oficial){
         girar_tabuleiro();
     }
-
-    pontuar(linhas_eliminadas.length);
 }
 
-function pontuar(){
-    //funçaõ
-}
+function pontuar(paramLinhasElim){
+    score = score + (10 * paramLinhasElim);
+    document.getElementById('pontuacao').innerText = score; 
 
+}
 
 
 function elimina_linha(indice){
+    var countLinhasElim = 0;
     var linhasHTML = document.getElementById("jogo").getElementsByClassName("alinhamento-horizontal");
     for (var i = indice; i >= 1; i--){
         linhasHTML[i].innerHTML = linhasHTML[i-1].innerHTML
         matriz_jogo[i] = matriz_jogo[i-1];
+        countLinhasElim++;
     }
+    pontuar(countLinhasElim);
+    countLinhasElim = 0;
 }
-
 function girar_tabuleiro(){
     if (sentido == 'cima') {
         sentido = 'baixo';
@@ -355,7 +366,7 @@ function mover_direta(){
     if (!validaMovimento_novo()){
         elemento.primeira_coluna -=1;
     }
-
+    
     posicionar();
 }
 
@@ -364,7 +375,7 @@ function mover_esquerda(){
     if (!validaMovimento_novo()){
         elemento.primeira_coluna +=1;
     }
-
+    
     posicionar();
 }
 
@@ -386,12 +397,22 @@ function mover_cima(){
 }
 
 function derrota(){
-    salvarJogo()
-
+    salvarJogo();
     iniciar();
 }
 
 function salvarJogo(){
+    pontuacao = score;
+    duracao = document.getElementById('duracaoPartida').innerText;
+
+    gameResult.append('pontuacao', pontuacao);
+    gameResult.append('nivel', nivel);
+    gameResult.append('duracaoPartida', duracao);
+
+    var sendResults = new XMLHttpRequest();
+    url = '../partida.php'; 
+    sendResults.open("POST", url, true);
+    sendResults.send(gameResult);
 
 }
 
@@ -423,7 +444,7 @@ function gira(){
     var colunas_matriz = linhas_matriz;
     var linhas_matriz = coluna_;
     if(!validaMovimento_novo()){
-
+       
         matriz_elemento_nova = [];
 
         for(j=0; j < colunas_matriz; j++){
@@ -531,9 +552,9 @@ function tempo(op) {
 	intervalo = window.setInterval(function() {
 		if (s == 60) { m++; s = 0; }
 		if (m == 60) { h++; s = 0; m = 0; }
-		if (h < 10) document.getElementById("hora").innerHTML = "0" + h + "h "; else document.getElementById("hora").innerHTML = h + "h ";
-		if (s < 10) document.getElementById("segundo").innerHTML = "0" + s + "s "; else document.getElementById("segundo").innerHTML = s + "s ";
-		if (m < 10) document.getElementById("minuto").innerHTML = "0" + m + "m "; else document.getElementById("minuto").innerHTML = m + "m ";
+		if (h < 10) document.getElementById("hora").innerHTML = "0" + h + ":"; else document.getElementById("hora").innerHTML = h + "h ";
+		if (s < 10) document.getElementById("segundo").innerHTML = "0" + s + ":"; else document.getElementById("segundo").innerHTML = s + "s ";
+		if (m < 10) document.getElementById("minuto").innerHTML = "0" + m + ":"; else document.getElementById("minuto").innerHTML = m + "m ";
 		s++;
 	},1000);
 }
