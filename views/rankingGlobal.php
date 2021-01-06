@@ -14,8 +14,20 @@ include '../verify_login.php';
                         $result = $con->query($sql);
                         if ($result->num_rows > 0){
                             echo "<table class='tabelaGlobal'><tr><th><b>Nome</b></th><th><b>Pontuação Obtida</b></th><th><b>Nível Atingido</b></th><th><b>Duração da Partida</b></th> </tr><tr>";          
+                        
+                        $cont = 1;
+                        $posicao = 0;
                         while ($row = $result->fetch_assoc()){
                         echo "<tr><td>".$row["username"]."</td><td>".$row["pontuacao"]."</td><td>".$row["nivel"]."</td><td>".$row["duracaoPartida"]."</td></tr>";
+                        
+                        if($posicao == 0 and strtolower($row["username"]) == strtolower($_SESSION['userLogin'])){
+
+                           $posicao = $cont; 
+                           
+                        }
+                        
+                        $cont++;
+                        
                         }
                         echo "</table>";
                     }
@@ -24,6 +36,6 @@ include '../verify_login.php';
                         }
                     ?>
             <br>
-            <b>Posição atual do usuário (nome do usuário aqui): (posição atual). </b> <br> <br>
+            <b>Posição atual de <?php echo $_SESSION['userLogin']?>: <?php echo $posicao ?></b> <br> <br>
         </div>
         <?php include '../footer.php'; ?>

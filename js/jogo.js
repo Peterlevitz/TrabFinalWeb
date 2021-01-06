@@ -435,9 +435,6 @@ function dinaUptade(){
 
 function derrota(){
     salvarJogo();
-
-    //dinaUptade();
-
     iniciar();
 }
 

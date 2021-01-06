@@ -37,7 +37,7 @@ $senha2 = md5($_POST['senha2']);
     $email_check = $eReg[0];
     $usuario_check = $uReg[0];
 
-     if (($email_check > 0) || ($usuario_check > 0))
+     if (($email_check > 0) || ($usuario_check > 0) || ($senha <> $senha2))
      {
          echo "<strong>ERRO</strong>: <br /><br />";
 
@@ -53,6 +53,12 @@ $senha2 = md5($_POST['senha2']);
              echo "Este nome de usuário já está sendo utilizado.<br /><br />";
 
              unset($username);
+         }
+         if ($senha <> $senha2)
+         {
+            echo "As senhas digitadas são diferentes.<br /><br />";
+
+            unset($senha);
          } ?>
         <a href="views/cadastro.php">Clique aqui para voltar.</a>
         <?php

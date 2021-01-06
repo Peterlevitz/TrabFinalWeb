@@ -46,7 +46,7 @@
                 <p class="cadastro">Não possui um usuário Rolling Tetris?
                     <a href="cadastro.php">Cadastre-se</a>
                 </p>
-                <a href="#" class="recsenha">Esqueci minha senha</a>
+                
 
             </fieldset>
         </form>

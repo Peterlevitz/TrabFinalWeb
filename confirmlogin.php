@@ -12,8 +12,9 @@ $userPassword =  $_POST['userPassword'];
 
 $query = "select username from usuarios where username = '{$userLogin}' and senha = md5('{$userPassword}')";
 
-
 $result = mysqli_query($con, $query);
+$valores = $result->fetch_assoc();
+$userLogin = $valores['username'];
 
 $row = mysqli_num_rows($result);
 
